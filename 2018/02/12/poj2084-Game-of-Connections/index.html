@@ -1,0 +1,394 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Johnny Zhu">
+  
+  
+  
+  
+    <meta name="description" content="问题描述DescriptionThis is a small but ancient game. You are supposed to write down the numbers 1, 2, 3, . . . , 2n - 1, 2n consecutively in clockwise order on the ground to form a circle, and then, to...">
+  
+  <title>poj2084 Game of Connections [ Johnny Zhu's Blog ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/02/12/hdu1022-Train-Problem-I/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hdu1022 Train Problem I
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/02/12/里约奥运所引发的一些联想/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        里约奥运所引发的一些联想
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/pic/head.jpg"/>
+          <div id="homelink">Johnny Zhu's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">主页</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">所有文章</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">标签</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">分类</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">关于我</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>poj2084 Game of Connections</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-02-12</span>
+      
+        <span id = "post-title-updated">修改于 2018-02-12</span>
+      
+      
+      <span id = "post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/算法竞赛-卡特兰数/">算法竞赛-卡特兰数</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/算法竞赛/">算法竞赛</a>
+      
+      </span>
+      
+    </p>
+    
+    <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>Description<br>This is a small but ancient game. You are supposed to write down the numbers 1, 2, 3, . . . , 2n - 1, 2n consecutively in clockwise order on the ground to form a circle, and then, to draw some straight line segments to connect them into number pairs. Every number must be connected to exactly one another.<br>And, no two segments are allowed to intersect. </p>
+<p>It’s still a simple game, isn’t it? But after you’ve written down the 2n numbers, can you tell me in how many different ways can you connect the numbers into pairs? Life is harder, right?</p>
+<p>Input<br>Each line of the input file will be a single positive number n, except the last line, which is a number -1. </p>
+<p>You may assume that 1 &lt;= n &lt;= 100.</p>
+<p>Output</p>
+<p>For each n, print in a single line the number of ways to connect the 2n numbers into pairs.</p>
+<p>Sample Input<br>2<br>3</p>
+<p>-1</p>
+<p>Sample Output<br>2</p>
+<p>5</p>
+<h1 id="卡特兰数的应用"><a href="#卡特兰数的应用" class="headerlink" title="卡特兰数的应用"></a>卡特兰数的应用</h1><p>卡特兰数的典型应用为如下这些问题：</p>
+<p>1.括号化问题：矩阵链乘： P=a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？(h(n)种)</p>
+<p>2.出栈次序问题：一个栈(无穷大)的进栈序列为1，2，3，…，n，有多少个不同的出栈序列?</p>
+<p>与出栈问题类似的一个题目：有2n个人排成一行进入剧场。入场费5元。其中只有n个人有一张5元钞票，另外n人只有10元钞票，剧院无其它钞票，问有多少中方法使得只要有10元的人买票，售票处就有5元的钞票找零？(将持5元者到达视作将5元入栈，持10元者到达视作使栈中某5元出栈)</p>
+<p>3.凸多边形的三角剖分问题：求将一个凸多边形区域分成三角形区域的方法数。</p>
+<p>类似的题目（1）：一位大城市的律师在她住所以北n个街区和以东n个街区处工作。每天她走2n个街区去上班。如果她从不穿越（但可以碰到）从家到办公室的对角线，那么有多少条可能的道路？</p>
+<p>类似的题目（2）：在圆上选择2n个点,将这些点成对连接起来使得所得到的n条线段不相交的方法数?</p>
+<p>4.用给定节点组成二叉树的问题：给定N个节点，能构成多少种不同的二叉树？（能构成h（N）个）</p>
+<p>这道题只需稍微琢磨一下，就可以发现它的实质还是凸多边形的三角剖分问题。</p>
+<p>代码如下：<br><code>markdown</code>cpp</p>
+<p>#include<iostream><br>using namespace std;<br>int cal[109][109]; ///卡特兰数cal[i][j];i代表第i个卡特兰数，j代表当前卡特兰数的第j位<br>int len[109]; ///用于存储各个卡特兰数的长度</iostream></p>
+<p>void getCal()<br>{<br>    len[1] = 1;<br>    cal[1][0] = 1;</p>
+<pre><code>int carry;  ///用于控制进位
+int temp;
+int tempLen = 1;
+for(int i=2;i&lt;=100;i++)
+{
+    for(int j=0;j&lt;tempLen;j++)  ///先进行相乘
+    {
+        cal[i][j] = (4*i-2)*cal[i-1][j];
+    }
+    carry = 0;
+    for(int j=0;j&lt;tempLen;j++)  ///把各个数分配的不同的位上
+    {                           ///与手算乘法的道理一样：从低位往高位算
+        temp = carry + cal[i][j];
+        cal[i][j] = temp%10;
+        carry = temp/10;
+    }
+
+    while(carry)
+    {
+        cal[i][tempLen++] = carry%10;
+        carry /= 10;
+    }
+
+    carry = 0;
+
+    for(int j=tempLen-1;j&gt;=0;j--)  ///处理除法，与手算除法的道理一样：从高位往低位算
+    {
+        temp = carry*10 + cal[i][j];
+        cal[i][j] = temp/(i+1);
+        carry = temp%(i+1);
+    }
+
+    while(cal[i][tempLen-1]==0)  ///如果最高位是0的话，则不算数
+    {
+        tempLen --;
+    }
+
+    len[i] = tempLen;
+}
+</code></pre><p>}<br>int main()<br>{<br>    getCal();<br>    int n;<br>    while(cin&gt;&gt;n)<br>    {<br>        if(-1==n)<br>        {<br>            break;<br>        }<br>        for(int i=len[n]-1;i&gt;=0;i–)<br>        {<br>            cout&lt;&lt;cal[n][i];<br>        }<br>        cout&lt;&lt;endl;<br>    }<br>    return 0;<br>}</p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#卡特兰数的应用"><span class="toc-text">卡特兰数的应用</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/02/12/hdu1022-Train-Problem-I/" class="prev">&larr; 上一篇 hdu1022 Train Problem I</a>
+  
+
+  
+
+  
+    <a href="/2018/02/12/里约奥运所引发的一些联想/" class="next">下一篇 里约奥运所引发的一些联想 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Johnny Zhu using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/pic/head.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/JohnnyZhunan">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
