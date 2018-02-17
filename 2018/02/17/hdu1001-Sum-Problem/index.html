@@ -2,8 +2,6 @@
 
 
 
-  
-
 
 
 
@@ -18,9 +16,10 @@
   
   
   
-    <meta name="description" content="">
+    <meta name="description" content="问题描述Hey, welcome to HDOJ(Hangzhou Dianzi University Online Judge).In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + … + n.
+InputThe input will consist of a series of integers n, one i...">
   
-  <title>分类: 算法竞赛-卡特兰数 [ Johnny Zhu's Blog ]</title>
+  <title>hdu1001 Sum Problem [ Johnny Zhu's Blog ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -39,6 +38,24 @@
 <body>
 <div class="side-navigate hide-area">
   
+    <div class="item prev">
+      <a href="/2018/02/17/hdu1003-Max-Sum/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hdu1003 Max Sum
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/02/14/hdu1002-A-B-Problem-II/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        hdu1002 A + B Problem II
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -78,7 +95,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/categories">分类</a>
             
@@ -103,178 +120,70 @@
     <div id="content-inner">
       
       
-  <article id="page">
-    
+  <article id="post">
+    <h1>hdu1001 Sum Problem</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-02-17</span>
       
-    
+        <span id = "post-title-updated">修改于 2018-02-17</span>
       
-    
       
-    
-      
-        <h1 class="center-title">
-          分类
-          
-        </h1>
-      
-    
-      
-    
-      
-    
-      
-    
-    <ul class="category-list">
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法竞赛-基础/">算法竞赛-基础</a>
-        
-          <span class="category-list-count">2</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法竞赛-动态规划（dp/">算法竞赛-动态规划（dp)</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法竞赛-大数/">算法竞赛-大数</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a class="active" href="/categories/算法竞赛-卡特兰数/">算法竞赛-卡特兰数</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/有趣的小笑话/">有趣的小笑话</a>
-        
-          <span class="category-list-count">2</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/My-Viewpoints/">My Viewpoints</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-    </ul>
-    
+      <span id = "post-title-categories">分类
       
       
         
+        
+        <a href="/categories/算法竞赛-基础/">算法竞赛-基础</a>
+      
+      </span>
       
       
-    
+      <span id = "post-title-tags">
+      标签
       
       
         
-      
-      
-    
-      
-      
         
+        <a href="/tags/算法竞赛/">算法竞赛</a>
       
+      </span>
       
+    </p>
     
-      
-      
-        
-      
-      
-    
-      
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
-  
-  <a href="/2018/02/12/poj2084-Game-of-Connections/">
-  
-    poj2084 Game of Connections
-  
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">2-12</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/算法竞赛-卡特兰数/">算法竞赛-卡特兰数</a>
-    
-    </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/算法竞赛/">算法竞赛</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
+    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Hey, welcome to HDOJ(Hangzhou Dianzi University Online Judge).<br>In this problem, your task is to calculate SUM(n) = 1 + 2 + 3 + … + n.</p>
+<p>Input<br>The input will consist of a series of integers n, one integer per line.</p>
+<p>Output<br>For each case, output SUM(n) in one line, followed by a blank line. You may assume the result will be in the range of 32-bit signed integer.</p>
+<p>Sample Input<br>1<br>100</p>
+<p>Sample Output<br>1<br>5050</p>
+<h2 id="解析及代码"><a href="#解析及代码" class="headerlink" title="解析及代码"></a>解析及代码</h2><p>基础题，很简单，代码如下所示：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="section">#include&lt;stdio.h&gt; </span></span><br><span class="line">using namespace std;</span><br><span class="line">void sum(int a);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"><span class="code">    int a;</span></span><br><span class="line"><span class="code">    while(scanf(cin&gt;&gt;a)</span></span><br><span class="line"><span class="code">	&#123;</span></span><br><span class="line"><span class="code">        sum(a);</span></span><br><span class="line"><span class="code">        cout&lt;&lt;endl;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br><span class="line">void sum(int a)</span><br><span class="line">&#123;</span><br><span class="line"><span class="code">    int s=0;</span></span><br><span class="line"><span class="code">    for(int i=1;i&lt;=a;i++)</span></span><br><span class="line"><span class="code">	&#123;</span></span><br><span class="line"><span class="code">         s = s+i;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line"><span class="code">    cout&lt;&lt;s&lt;&lt;endl;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
   </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析及代码"><span class="toc-text">解析及代码</span></a></li></ol>
+  </div>
+</div>
 
   
+<nav id="pagination">
+  
+    <a href="/2018/02/17/hdu1003-Max-Sum/" class="prev">&larr; 上一篇 hdu1003 Max Sum</a>
+  
+
+  
+
+  
+    <a href="/2018/02/14/hdu1002-A-B-Problem-II/" class="next">下一篇 hdu1002 A + B Problem II &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
@@ -382,6 +291,8 @@ var unsplashConfig = {"gravity":"north"};
 var turnoffBackgroundImage = false;
 
 
+
+  turnoffBackgroundImage = true;
 
 
 var backgroundColor = "34495E";
