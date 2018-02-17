@@ -16,14 +16,9 @@
   
   
   
-    <meta name="description" content="问题描述Problem DescriptionCalculate A + B.
-InputEach line will contain two integers A and B. Process to end of file.
-OutputFor each case, output A + B in one line.
-Sample Input1 1
-Sample Output2
-解析算法最...">
+    <meta name="description" content="我相信一个人只要品行端正，只要还与外界接触，那么Ta就一定有朋友。我们都希望友谊长存，我们都希望与恋人的爱情永恒 。然而，世事难料，万一有一天，出于某种原因，你与你的朋友或者爱人分道扬镳，甚至达到彼此不再沟通的地步时，失望、难受肯定在所难免。但是，若为此长时间地纠结甚至一蹶不振那就大可不必了，因为这个世界上最不缺的事物之一就是脖子上顶着一个脑袋的人，失去一个人的时候，你还可以去其他人接触。一...">
   
-  <title>hdu1000 A + B Problem [ Johnny Zhu's Blog ]</title>
+  <title>世界上最不缺的事物之一就是脖子上顶着一个脑袋的人 [ Johnny Zhu's Blog ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -42,22 +37,13 @@ Sample Output2
 <body>
 <div class="side-navigate hide-area">
   
-    <div class="item prev">
-      <a href="/2018/02/14/hdu1002-A-B-Problem-II/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        hdu1002 A + B Problem II
-      </div>
-    </div>
-  
   
     <div class="item next">
-      <a href="/2018/02/12/hdu1022-Train-Problem-I/">
+      <a href="/2018/02/17/深度优先搜索与广度优先搜索/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        hdu1022 Train Problem I
+        深度优先搜索与广度优先搜索
       </div>
     </div>
   
@@ -125,9 +111,9 @@ Sample Output2
       
       
   <article id="post">
-    <h1>hdu1000 A + B Problem</h1>
+    <h1>世界上最不缺的事物之一就是脖子上顶着一个脑袋的人</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-14</span>
+      <span id = "post-title-date">撰写于 2018-02-17</span>
       
         <span id = "post-title-updated">修改于 2018-02-17</span>
       
@@ -137,7 +123,7 @@ Sample Output2
       
         
         
-        <a href="/categories/算法竞赛-基础/">算法竞赛-基础</a>
+        <a href="/categories/My-Viewpoints/">My Viewpoints</a>
       
       </span>
       
@@ -148,21 +134,19 @@ Sample Output2
       
         
         
-        <a href="/tags/算法竞赛/">算法竞赛</a>
+        <a href="/tags/我的随笔/">我的随笔</a>
       
       </span>
       
     </p>
     
-    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Problem Description<br>Calculate A + B.</p>
-<p><strong>Input</strong><br>Each line will contain two integers A and B. Process to end of file.</p>
-<p><strong>Output</strong><br>For each case, output A + B in one line.</p>
-<p><strong>Sample Input</strong><br>1 1</p>
-<p><strong>Sample Output</strong><br>2</p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>算法最基础的题目，对于初学者来说，唯一的难点就是这个语句：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while(scanf("%d %d",&amp;a,&amp;b)!=EOF)</span><br></pre></td></tr></table></figure></p>
-<p>其中，EOF是End of File的缩写，代表文本文件的最后一行。如果用C++的语句的话，则显得更为简单：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while(cin&gt;&gt;a&gt;&gt;b)</span><br></pre></td></tr></table></figure></p>
-<p>但，用C++语句的话，时间复杂度会有所增加。</p>
-<p>本题代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="section">#include&lt;stdio.h&gt; </span></span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"><span class="code">	int a,b,c;</span></span><br><span class="line"><span class="code">	while(scanf("%d %d",&amp;a,&amp;b)!=EOF)</span></span><br><span class="line"><span class="code">	&#123; </span></span><br><span class="line"><span class="code">		c=a+b;</span></span><br><span class="line"><span class="code">		cout&lt;&lt;c&lt;&lt;endl;</span></span><br><span class="line"><span class="code">	&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+    <p><div align="left"><br>    我相信一个人只要品行端正，只要还与外界接触，那么Ta就一定有朋友。我们都希望友谊长存，我们都希望与恋人的爱情永恒 。然而，世事难料，万一有一天，出于某种原因，你与你的朋友或者爱人分道扬镳，甚至达到彼此不再沟通的地步时，失望、难受肯定在所难免。但是，若为此长时间地纠结甚至一蹶不振那就大可不必了，因为这个世界上最不缺的事物之一就是脖子上顶着一个脑袋的人，失去一个人的时候，你还可以去其他人接触。一个人，不可能与所有人都关系破裂，否则的话，那就是他人格有问题了。因此，对于绝大多数人来说，与你最终分道扬镳的朋友只是占据了你众多朋友当中的极少数，失去了这极少数人，你还有无数次机会与其他人接触，所以，为这极少数人而纠结过度，我想并不是一个明智的选择。</div></p>
+<p> <div align="center"><br><img src="世界上最不缺的事物之一就是脖子上顶着一个脑袋的人\1.jpg" alt=""></div></p>
+<p><div align="left"><br>      世界上最不缺的事物之一就是脖子上顶着一个脑袋的人。这个观点或许不仅仅可以套用在人际交往上。等踏入社会，面临工作岗位调整以及人事变动的时候或许也是如此。美国南北战争期间，一次，北方军队遭到了南方军队的突袭，损失了一名准将，和一百匹战马。林肯总统接到战报之后，叹气地说道：”损失了100匹战马，实在是太可惜了。 “报务员忍不住问他：”总统先生，损失了一名准将难道就不可惜吗？“林肯总统回答说：”只需5分钟，我就可以重新任命一名准将，但是想要再找来100匹战马，那谈何容易！“</div></p>
+<p>无独有偶，美国前国务卿科林.鲍威尔在军队服役期间，一次，他们的总参谋长 在欢迎他们班59名新擢升的准将时，致辞说：”……如果我把你们放到一架飞机上，倘若飞机失事，你们全体遇难，这个班的花名册上还是会出现59个人的名字，他们还是会和你们一样出色，这是不成问题的……“</p>
+<p><img src="世界上最不缺的事物之一就是脖子上顶着一个脑袋的人\2.jpg" alt=""></p>
+<p> 世界上最不缺的事物之一就是脖子上顶着一个脑袋的人。正是出于此，我们每个人都应当时刻保持谦虚谨慎。我们在交友、恋爱的过程中，永远不要认为失去一个你，对方就会哭天抢地、一蹶不振。因为就算没有你了，对方还是有很多机会去交其它的朋友，去谈另外一场恋爱，而且这其他人比会和你一样优秀甚至超过你。而在工作、生活的过程中，不要动辄就将“你若不怎么怎么，我就撒手不管了！”、“你若不怎么怎么，我就不干了！”这类话语拿出来置气。因为即使你放弃了你原有的角色、或者离开了你原先的岗位，同样会有无数的人可以顶替你，并且和你一样优秀，甚至比你干得更好。总而言之：不要总把自己当成一个大人物。因为世界上最不缺的事物之一就是脖子上顶着一个脑袋的人，这些人可以随时随地的将你替换掉！</p>
+<p><img src="世界上最不缺的事物之一就是脖子上顶着一个脑袋的人\3.jpg" alt=""><br>世界上最不缺的事物之一就是脖子上顶着一个脑袋的人，如果我们每个人都时常将这句话拿出来提醒一下自己。那么我相信，我们将会在工作、生活当中变得更加谨慎而不至于变得任性。 这样的话，类似与朋友分道扬镳，与恋人断绝来往的事情反而就会少许多。</p>
 
   </article>
   <div class="random-toc-area">
@@ -170,20 +154,18 @@ Sample Output2
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析"><span class="toc-text">解析</span></a></li></ol>
+    
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2018/02/14/hdu1002-A-B-Problem-II/" class="prev">&larr; 上一篇 hdu1002 A + B Problem II</a>
-  
 
   
 
   
-    <a href="/2018/02/12/hdu1022-Train-Problem-I/" class="next">下一篇 hdu1022 Train Problem I &rarr;</a>
+    <a href="/2018/02/17/深度优先搜索与广度优先搜索/" class="next">下一篇 深度优先搜索与广度优先搜索 &rarr;</a>
   
 </nav>
 

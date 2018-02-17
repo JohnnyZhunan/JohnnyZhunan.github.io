@@ -16,14 +16,11 @@
   
   
   
-    <meta name="description" content="问题描述Problem DescriptionCalculate A + B.
-InputEach line will contain two integers A and B. Process to end of file.
-OutputFor each case, output A + B in one line.
-Sample Input1 1
-Sample Output2
-解析算法最...">
+    <meta name="description" content="深度优先搜索与广度优先搜索是数据结构当中比较重要的两个知识点，在这里我们举个例子，就可以比较直观的了解这两个算法的不同过程与原理。
+我们有如图所示的图（数据结构中的图）
+深度优先搜索我们假设在上图中，以结点0为起点，如果是深度优先搜索的话，那么就遵循以下这个过程：1.从结点0出发（将结点0标记为已访问），可以到达结点是1和结点2，那么，可以先遍历这两个结点当中的任意一个，我们假设遍历的是结点...">
   
-  <title>hdu1000 A + B Problem [ Johnny Zhu's Blog ]</title>
+  <title>深度优先搜索与广度优先搜索 [ Johnny Zhu's Blog ]</title>
   
   
     <link rel="shortcut icon" href="/favicon.ico">
@@ -43,21 +40,21 @@ Sample Output2
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2018/02/14/hdu1002-A-B-Problem-II/">
+      <a href="/2018/02/17/世界上最不缺的事物之一就是脖子上顶着一个脑袋的人/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        hdu1002 A + B Problem II
+        世界上最不缺的事物之一就是脖子上顶着一个脑袋的人
       </div>
     </div>
   
   
     <div class="item next">
-      <a href="/2018/02/12/hdu1022-Train-Problem-I/">
+      <a href="/2018/02/17/hdu1013-Digital-Roots/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        hdu1022 Train Problem I
+        hdu1013 Digital Roots
       </div>
     </div>
   
@@ -125,9 +122,9 @@ Sample Output2
       
       
   <article id="post">
-    <h1>hdu1000 A + B Problem</h1>
+    <h1>深度优先搜索与广度优先搜索</h1>
     <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-14</span>
+      <span id = "post-title-date">撰写于 2018-02-17</span>
       
         <span id = "post-title-updated">修改于 2018-02-17</span>
       
@@ -137,7 +134,7 @@ Sample Output2
       
         
         
-        <a href="/categories/算法竞赛-基础/">算法竞赛-基础</a>
+        <a href="/categories/算法与知识点/">算法与知识点</a>
       
       </span>
       
@@ -148,21 +145,18 @@ Sample Output2
       
         
         
-        <a href="/tags/算法竞赛/">算法竞赛</a>
+        <a href="/tags/数据结构与算法/">数据结构与算法</a>
       
       </span>
       
     </p>
     
-    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Problem Description<br>Calculate A + B.</p>
-<p><strong>Input</strong><br>Each line will contain two integers A and B. Process to end of file.</p>
-<p><strong>Output</strong><br>For each case, output A + B in one line.</p>
-<p><strong>Sample Input</strong><br>1 1</p>
-<p><strong>Sample Output</strong><br>2</p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>算法最基础的题目，对于初学者来说，唯一的难点就是这个语句：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while(scanf("%d %d",&amp;a,&amp;b)!=EOF)</span><br></pre></td></tr></table></figure></p>
-<p>其中，EOF是End of File的缩写，代表文本文件的最后一行。如果用C++的语句的话，则显得更为简单：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while(cin&gt;&gt;a&gt;&gt;b)</span><br></pre></td></tr></table></figure></p>
-<p>但，用C++语句的话，时间复杂度会有所增加。</p>
-<p>本题代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="section">#include&lt;stdio.h&gt; </span></span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"><span class="code">	int a,b,c;</span></span><br><span class="line"><span class="code">	while(scanf("%d %d",&amp;a,&amp;b)!=EOF)</span></span><br><span class="line"><span class="code">	&#123; </span></span><br><span class="line"><span class="code">		c=a+b;</span></span><br><span class="line"><span class="code">		cout&lt;&lt;c&lt;&lt;endl;</span></span><br><span class="line"><span class="code">	&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+    <p>深度优先搜索与广度优先搜索是数据结构当中比较重要的两个知识点，在这里我们举个例子，就可以比较直观的了解这两个算法的不同过程与原理。</p>
+<p>我们有如图所示的图（数据结构中的图）<br><img src="深度优先搜索与广度优先搜索/图1.png" alt=""></p>
+<h3 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h3><p>我们假设在上图中，以结点0为起点，如果是深度优先搜索的话，那么就遵循以下这个过程：<br>1.从结点0出发（将结点0标记为已访问），可以到达结点是1和结点2，那么，可以先遍历这两个结点当中的任意一个，我们假设遍历的是结点1，遍历结点1之后，将结点1标记为已访问.<br>2.从结点1出发，可以达到结点3，所以遍历结点3（结点3标记为已访问）.<br>3.从结点3出发，可以到达结点2和结点4，那么，可以I遍历这两个结点当中的任意一个，我们假设遍历的是结点2（结点2标记为已访问）.<br>4.从结点2出发，无法到达任何一个结点，那么回溯到结点3.<br>5.从结点3出发，还可以到达结点4，访问之。此时所有的结点都被标记为已访问，遍历结束。</p>
+<p>深度优先搜索算法的伪代码如下所示：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DFS（顶点v）</span><br><span class="line">&#123;</span><br><span class="line">  标记v为已遍历；</span><br><span class="line">  for（对于v的每一个相邻结点u）</span><br><span class="line"><span class="code">      DFS（u）;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><p>还以上图为例，从结点0出发，广度优先遍历的过程如下：<br>1.从结点0出发，可以到达结点1和结点2,分别访问这两个结点，并将这两个结点标记为已访问。<br>2.从结点2出发，无法到达任何一个结点，则看结点1。<br>3.从结点1出发可以到达结点3，访问之。<br>4.从结点3出发，可以叨叨结点2和结点4，但结点4已经被访问过了，所以访问结点4。至此，所有结点都已被访问，遍历结束。</p>
+<p>广度优先搜索的伪代码如下所示：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">BFS()</span><br><span class="line">&#123;</span><br><span class="line">  输入起始点；</span><br><span class="line">  初始化所有顶点标记；</span><br><span class="line">  初始化一个队列queue并将起始点放入队列；</span><br><span class="line"></span><br><span class="line">  while（queue不为空）</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line"><span class="code">    从队列中删除一个顶点s并标记为已访问； //表示遍历了s</span></span><br><span class="line"><span class="code">    将s邻接的所有还没遍历的点加入队列；</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
   </article>
   <div class="random-toc-area">
@@ -170,20 +164,20 @@ Sample Output2
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析"><span class="toc-text">解析</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#深度优先搜索"><span class="toc-text">深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#广度优先搜索"><span class="toc-text">广度优先搜索</span></a></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2018/02/14/hdu1002-A-B-Problem-II/" class="prev">&larr; 上一篇 hdu1002 A + B Problem II</a>
+    <a href="/2018/02/17/世界上最不缺的事物之一就是脖子上顶着一个脑袋的人/" class="prev">&larr; 上一篇 世界上最不缺的事物之一就是脖子上顶着一个脑袋的人</a>
   
 
   
 
   
-    <a href="/2018/02/12/hdu1022-Train-Problem-I/" class="next">下一篇 hdu1022 Train Problem I &rarr;</a>
+    <a href="/2018/02/17/hdu1013-Digital-Roots/" class="next">下一篇 hdu1013 Digital Roots &rarr;</a>
   
 </nav>
 
