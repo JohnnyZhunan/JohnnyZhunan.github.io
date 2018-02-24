@@ -124,7 +124,7 @@
     <p class="page-title-sub">
       <span id = "post-title-date">撰写于 2018-02-12</span>
       
-        <span id = "post-title-updated">修改于 2018-02-17</span>
+        <span id = "post-title-updated">修改于 2018-02-24</span>
       
       
       <span id = "post-title-categories">分类
@@ -150,16 +150,14 @@
     </p>
     
     <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the fastest all over the world ^v^). But here comes a problem, there is only one railway where all the trains stop. So all the trains come in from one side and get out from the other side. For this problem, if train A gets into the railway first, and then train B gets into the railway before train A leaves, train A can’t leave until train B leaves. The pictures below figure out the problem. Now the problem for you is, there are at most 9 trains in the station, all the trains has an ID(numbered from 1 to n), the trains get into the railway in an order O1, your task is to determine whether the trains can get out in an order O2.</p>
-<p>Input<br>The input contains several test cases. Each test case consists of an integer, the number of trains, and two strings, the order of the trains come in:O1, and the order of the trains leave:O2. The input is terminated by the end of file. More details in the Sample Input.</p>
-<p>Output<br>The output contains a string “No.” if you can’t exchange O2 to O1, or you should output a line contains “Yes.”, and then output your way in exchanging the order(you should output “in” for a train getting into the railway, and “out” for a train getting out of the railway). Print a line contains “FINISH” after each test case. More details in the Sample Output.</p>
-<p>Sample Input</p>
-<p>3 123 321<br>3 123 312</p>
-<p>Sample Output</p>
-<p>Yes.<br>in<br>in<br>in<br>out<br>out<br>out<br>FINISH<br>No.<br>FINISH</p>
-<p>Hint<br>Hint</p>
-<p>For the first Sample Input, we let train 1 get in, then train 2 and train 3.<br>So now train 3 is at the top of the railway, so train 3 can leave first, then train 2 and train 1.<br>In the second Sample input, we should let train 3 leave first, so we have to let train 1 get in, then train 2 and train 3.<br>Now we can let train 3 leave.<br>But after that we can’t let train 1 leave before train 2, because train 2 is at the top of the railway at the moment.<br>So we output “No.”.</p>
+<p> <img src="http://p4cjhhn4q.bkt.clouddn.com/hdu1022.png" alt=""></p>
+<p><strong>Input</strong><br>The input contains several test cases. Each test case consists of an integer, the number of trains, and two strings, the order of the trains come in:O1, and the order of the trains leave:O2. The input is terminated by the end of file. More details in the Sample Input.</p>
+<p><strong>Output</strong><br>The output contains a string “No.” if you can’t exchange O2 to O1, or you should output a line contains “Yes.”, and then output your way in exchanging the order(you should output “in” for a train getting into the railway, and “out” for a train getting out of the railway). Print a line contains “FINISH” after each test case. More details in the Sample Output.</p>
+<p><strong>Sample Input</strong><br>3 123 321<br>3 123 312</p>
+<p><strong>Sample Output</strong><br>Yes.<br>in<br>in<br>in<br>out<br>out<br>out<br>FINISH<br>No.<br>FINISH</p>
+<p><strong>Hint</strong><br>For the first Sample Input, we let train 1 get in, then train 2 and train 3.<br>So now train 3 is at the top of the railway, so train 3 can leave first, then train 2 and train 1.<br>In the second Sample input, we should let train 3 leave first, so we have to let train 1 get in, then train 2 and train 3.<br>Now we can let train 3 leave.<br>But after that we can’t let train 1 leave before train 2, because train 2 is at the top of the railway at the moment.<br>So we output “No.”.</p>
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>根据题意很容易得出这样一个结论：火车进站和出站符合“先进后出”的规律。“先进后出”是栈的典型特点。所以首先想到的就是用栈的原理来解决该题。<br>我们把重点放在代码的实现上：<br>1.我们先定义两个数组in[ ]和out[ ]，分别用来存储进站的火车编号和出站的火车编号。同时设置两个类似于“指针”的变量i, j，分别指向in数组和out数组的首元素。<br>2.我们先考虑进栈。当栈空或者即将进栈的元素（即i所指向的in数组内的元素）和当前j所指向的out数组的元素不相等时，我们就让i指向的in数组内的那个元素进栈（由于题的特点，每辆火车的编号都具有唯一性，即：栈内的元素注定彼此不同。因此，这种办法在本题中才行得通）。<br>3.栈顶元素和当前j所指向的out的元素相等的时候，说明火车可以出战，我们就让这个栈顶元素出栈，同时j指向out数组的下一个元素。否则就停止进栈、出栈的操作（因为栈顶元素一旦与当前j所指向的out元素的值不相等，说明火车在车站里面被堵住了，出不来了）。<br>4.依照上面的步骤。当进栈出栈操作结束以后，若栈里面还有元素，说明火车出不了站了。<br>5.若栈空的话，则说明火车已经全部出站。那么就只剩一个问题：如何能将in和out指示给打印出来！我们可以设置一个flag数组，当进栈的时候，我们把值设置成1，若出栈的话，我们就把它设置为0，到时候根据flag元素是1还是0,把in和out打印出来。</p>
-<p>代码如下：<br>```markdown</p>
+<p>代码如下：<br>```cpp?linenums</p>
 <p>#include<iostream></iostream></p>
 <p>#include<cstdio></cstdio></p>
 <p>#include<cstring></cstring></p>
