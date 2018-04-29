@@ -1,0 +1,347 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Johnny Zhu">
+  
+  
+  
+  
+    <meta name="description" content="C# Serializable(序列化）如果只从Unity的使用以及直观的从Unity界面的角度讲，建议看看这个链接：Unity中的Serializable
+但是从C#语言角度讲，建议大家看看这个链接，对于小白来讲这个解释比较专业化，建议大家慢慢理解：C# Serializable对象序列化的作用
+SerializeField与Serializable之间的关系建议参考这个链接，我认为比较直...">
+  
+  <title>Unity总结（三） [ Johnny Zhu's Blog ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2018/04/22/Unity使用总结（二）/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Unity使用总结（二）
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="/pic/head.jpg"/>
+          <div id="homelink">Johnny Zhu's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">主页</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">所有文章</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">标签</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">分类</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">关于我</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>Unity总结（三）</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">撰写于 2018-04-29</span>
+      
+        <span id = "post-title-updated">修改于 2018-04-29</span>
+      
+      
+      <span id = "post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/2018年4月/">2018年4月</a>
+      
+      </span>
+      
+      
+      <span id = "post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/Unity/">Unity</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/C/">C#</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/NGUI/">NGUI</a>
+      
+      </span>
+      
+    </p>
+    
+    <h2 id="C-Serializable-序列化）"><a href="#C-Serializable-序列化）" class="headerlink" title="C# Serializable(序列化）"></a>C# Serializable(序列化）</h2><p>如果只从Unity的使用以及直观的从Unity界面的角度讲，建议看看这个链接：<br><a href="https://blog.csdn.net/u011416077/article/details/50357718" target="_blank" rel="noopener">Unity中的Serializable</a></p>
+<p>但是从C#语言角度讲，建议大家看看这个链接，对于小白来讲这个解释比较专业化，建议大家慢慢理解：<br><a href="https://blog.csdn.net/yinghuolsx/article/details/69525311" target="_blank" rel="noopener">C# Serializable对象序列化的作用</a></p>
+<h2 id="SerializeField与Serializable之间的关系"><a href="#SerializeField与Serializable之间的关系" class="headerlink" title="SerializeField与Serializable之间的关系"></a>SerializeField与Serializable之间的关系</h2><p>建议参考这个链接，我认为比较直观且好理解：<br><a href="https://www.cnblogs.com/zhaoqingqing/p/3995304.html" target="_blank" rel="noopener">SerializeField和Serializable</a></p>
+<h2 id="按键事件"><a href="#按键事件" class="headerlink" title="按键事件"></a>按键事件</h2><p>在C#当中，若是想得到按键触发的效果，可以使用GetKey……系列方法，具体方法参照这个链接：<br><a href="https://www.cnblogs.com/777777-716/p/5003962.html" target="_blank" rel="noopener">Unity键盘、鼠标，检测按键输入事件 </a></p>
+<p>但是这个当中，涉及一个一个问题：键盘码（KeyCode），网上有不少链接，都把编号什么的给出来了，但是，在具体操作中，什么按键对应什么样的KeyCode，建议大家看这个链接：<br><a href="https://blog.csdn.net/awnuxcvbn/article/details/22275675" target="_blank" rel="noopener">unity3d KeyCode各键值说明</a><br>而对于KeyCode对照表，建议大家看这个链接：<br><a href="www.banyuner.com/19490.html">KeyCode对照表</a></p>
+<h2 id="Input输入事件"><a href="#Input输入事件" class="headerlink" title="Input输入事件"></a>Input输入事件</h2><p>参考这个链接：<br><a href="https://www.cnblogs.com/HangZhe/p/6905466.html" target="_blank" rel="noopener">关于Unity中的Input输入事件 </a><br>不过上述链接只对键盘事件做出了解释，那么如何对相关组件（不仅仅是Input事件）进行实时监听（类似于前端当中的OnChange），参考这个链接：<br><a href="https://www.cnblogs.com/zhaoqingqing/p/4089822.html" target="_blank" rel="noopener">NGUI OnChange Event </a></p>
+<h2 id="C-当中的var类型"><a href="#C-当中的var类型" class="headerlink" title="C#当中的var类型"></a>C#当中的var类型</h2><p>直观从用法上，不知道能否理解成语C++中的auto类型类似。用法以及相关的注意事项参考这个链接：<br><a href="https://www.cnblogs.com/0weibin/p/3952407.html" target="_blank" rel="noopener">C#中的隐式类型var——详细示例解析 </a></p>
+<h2 id="C-泛型类（Dictionary）"><a href="#C-泛型类（Dictionary）" class="headerlink" title="C#泛型类（Dictionary）"></a>C#泛型类（Dictionary）</h2><p>简而言之，是一种映射关系，具有一一对应的关系，具体通过一种什么方式对应呢？答案是哈希表,下面给出两个链接，一个介绍了Dictionary，另一个介绍了哈希表：<br><a href="https://msdn.microsoft.com/zh-cn/library/xfhwa508(VS.80" target="_blank" rel="noopener">Dictionary 泛型类</a>.aspx)</p>
+<p><a href="https://blog.csdn.net/duan19920101/article/details/51579136" target="_blank" rel="noopener">哈希表（散列表）原理详解</a></p>
+<h2 id="Unity当中的Camera"><a href="#Unity当中的Camera" class="headerlink" title="Unity当中的Camera"></a>Unity当中的Camera</h2><p>要看最详解，还是要看官网，官网上的描述非常详尽，只是官网的速度比较慢：<br><a href="https://docs.unity3d.com/Manual/class-Camera.html" target="_blank" rel="noopener">Camera</a></p>
+<p>本人在这周的工作当中遇到的一个比较烦的问题是，根据窗口界面动态调整Camera的Viewer Port Rect，它到底是什么东西，参考官方文档：<br><a href="https://docs.unity3d.com/ScriptReference/Rect.html" target="_blank" rel="noopener">Rect</a><br>只是官网貌似说的有问题，Rect的第一个和第二个参数，貌似应该是左下角，而不是官网所给的左上角。</p>
+<h2 id="Layers"><a href="#Layers" class="headerlink" title="Layers"></a>Layers</h2><p>原理的话，还是推荐官方网站：<br><a href="https://docs.unity3d.com/Manual/Layers.html" target="_blank" rel="noopener">Layers</a><br>在使用Layer的时候，也应注意起与LayerMask的区别，关于这个，参考这个链接：<br><a href="https://blog.csdn.net/moonhot537/article/details/51459475" target="_blank" rel="noopener">浅谈Unity3D中Layers和LayerMask</a></p>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Serializable-序列化）"><span class="toc-text">C# Serializable(序列化）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SerializeField与Serializable之间的关系"><span class="toc-text">SerializeField与Serializable之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按键事件"><span class="toc-text">按键事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input输入事件"><span class="toc-text">Input输入事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-当中的var类型"><span class="toc-text">C#当中的var类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-泛型类（Dictionary）"><span class="toc-text">C#泛型类（Dictionary）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity当中的Camera"><span class="toc-text">Unity当中的Camera</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layers"><span class="toc-text">Layers</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2018/04/22/Unity使用总结（二）/" class="next">下一篇 Unity使用总结（二） &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Johnny Zhu using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="/pic/head.jpg">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/JohnnyZhunan">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
