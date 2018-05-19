@@ -1,515 +1,293 @@
-
-
-
-
-  
-
-
-
-
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
   
-  <meta name="author" content="Johnny Zhu">
+  <title>Category: 算法竞赛-卡特兰数,2018年2月 | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Johnny Zhu&#39;s Blog">
+<meta property="og:url" content="http://www.kuailegou.win/categories/算法竞赛-卡特兰数-2018年2月/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Johnny Zhu&#39;s Blog">
+<meta name="twitter:description" content="��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����">
   
   
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
   
   
-    <meta name="description" content="">
-  
-  <title>分类: 算法竞赛-卡特兰数,2018年2月 [ Johnny Zhu's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
+
 </head>
 
 <body>
-<div class="side-navigate hide-area">
-  
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="/pic/head.jpg"/>
-          <div id="homelink">Johnny Zhu's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">主页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">所有文章</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li class="active">
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于我</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Johnny&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Johnny&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        总觉得自己还差的很远
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
     </div>
-  </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/02/12/poj2084-Game-of-Connections/" class="archive-article-date">
+  <time datetime="2018-02-12T02:34:06.000Z" itemprop="datePublished">02-12</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/02/12/poj2084-Game-of-Connections/"  target="_blank"  >poj2084 Game of Connections</a>
+    </h1>
+  
 
-  <div id="content-outer">
-    <div id="content-inner">
+    </header>
       
+        <div class="archive-post-footer">
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
       
-  <article id="page">
-    
+    <a href="/tags/算法竞赛/" class="color5">算法竞赛</a>
       
-    
+  </li>
+
+        </div>
       
-    
-      
-    
-      
-        <h1 class="center-title">
-          分类
-          
-        </h1>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    <ul class="category-list">
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/2018年5月/">2018年5月</a>
-        
-          <span class="category-list-count">3</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/2018年4月/">2018年4月</a>
-        
-          <span class="category-list-count">4</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/2018年2月/">2018年2月</a>
-        
-          <span class="category-list-count">10</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a class="active" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/有趣的小笑话/">有趣的小笑话</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/My-Viewpoints/">My Viewpoints</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-        <li class="category-list-item">
-        
-          <a href="/categories/算法与知识点/">算法与知识点</a>
-        
-          <span class="category-list-count">1</span>
-        </li>
-      
-    </ul>
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
+  </div>
+</article>
+
   
-  <a href="/2018/02/12/poj2084-Game-of-Connections/">
   
-    poj2084 Game of Connections
+    </div></section>
   
-  </a>
-  <p class="page-title-sub">
-    <span id = "post-title-date">2-12</span>
-    
-    <span id = "post-title-categories">分类
-    
-    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-      
-      <a href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
-    
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    
-    
-    <span id = "post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/算法竞赛/">算法竞赛</a>
-    
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-  </article>
+</p>
 
-  
 
-      
-      
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
     </div>
   </div>
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Johnny Zhu using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="/pic/head.jpg">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/JohnnyZhunan">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
-</div>
-
-
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
-
-
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
-
-
-
-
-var backgroundColor = "34495E";
-
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
   }
-});
-
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a><a class="category-link" href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
 </body>
 </html>
-

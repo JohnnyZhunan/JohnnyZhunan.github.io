@@ -1,155 +1,158 @@
-
-
-
-
-
-
-
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
   
-  <meta name="author" content="Johnny Zhu">
+  <title>Unity制作简易打砖块 | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="前言本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视频。本">
+<meta name="keywords" content="Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity制作简易打砖块">
+<meta property="og:url" content="http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="前言本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视频。本">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-1.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-2.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-3.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-5.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-6.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-4.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-7.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-8.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-10.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-11.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-12.png">
+<meta property="og:updated_time" content="2018-02-25T13:04:58.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity制作简易打砖块">
+<meta name="twitter:description" content="前言本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视频。本">
+<meta name="twitter:image" content="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-1.png">
   
   
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
   
   
-    <meta name="description" content="前言本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视...">
-  
-  <title>Unity制作简易打砖块 [ Johnny Zhu's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
+
 </head>
 
 <body>
-<div class="side-navigate hide-area">
-  
-    <div class="item prev">
-      <a href="/2018/02/25/C-C-编写简易五子棋游戏/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        C/C++编写简易五子棋游戏
-      </div>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Johnny&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Johnny&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        总觉得自己还差的很远
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
     </div>
-  
-  
-    <div class="item next">
-      <a href="/2018/02/17/世界上最不缺的事物之一就是脖子上顶着一个脑袋的人/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        世界上最不缺的事物之一就是脖子上顶着一个脑袋的人
-      </div>
-    </div>
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="/pic/head.jpg"/>
-          <div id="homelink">Johnny Zhu's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">主页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">所有文章</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于我</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article id="post">
-    <h1>Unity制作简易打砖块</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-23</span>
-      
-        <span id = "post-title-updated">修改于 2018-02-25</span>
-      
-      
-      <span id = "post-title-categories">分类
-      
-      
-        
-        
-        <a href="/categories/2018年2月/">2018年2月</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      标签
-      
-      
-        
-        
-        <a href="/tags/Unity/">Unity</a>
-      
-      </span>
-      
-    </p>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Unity制作简易打砖块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视频。本文将只会将我个人在制作游戏过程中遇到的一些难点或者要点呈现出来供大家参考。<br>此外，由于Unity3d引擎当中所包含的功能和模块比较繁杂，每当新建一个组件或者材质，有可能会有许多参数，如果想把各个参数都呈现出来，显然也要花费大量的精力。而且，这些参数往往都不是一成不变的，而是根据游戏制作者的个人喜好或者习惯而不断变化，因此，在这里只把一些比较关键的地方呈现给大家。</p>
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Unity制作简易打砖块
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年2月/">2018年2月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本博文为大家介绍一下用Unity3d游戏引擎制作简易打砖块的大致情况及相关要点。由于在制作游戏过程中往往不是一气呵成的，在制作过程中，常常伴随着代码的重构以及相关组件的修改。因此，要想在一篇博文中了解制作一款游戏的相关过程及思路是一件比较困难的事情，如果想要了解制作该游戏的全部过程，那么，博文的篇幅将会非常大，因此想要了解游戏制作过程的朋友们，建议你们可以在网易云课堂等相关网站查找相关视频。本文将只会将我个人在制作游戏过程中遇到的一些难点或者要点呈现出来供大家参考。<br>此外，由于Unity3d引擎当中所包含的功能和模块比较繁杂，每当新建一个组件或者材质，有可能会有许多参数，如果想把各个参数都呈现出来，显然也要花费大量的精力。而且，这些参数往往都不是一成不变的，而是根据游戏制作者的个人喜好或者习惯而不断变化，因此，在这里只把一些比较关键的地方呈现给大家。</p>
 <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>打砖块游戏大家都比较熟悉，现在只是把在用unity引擎制作该游戏时的工作界面以及制作打砖块游戏时需要的游戏对象（GameObject）、材质(material)、预制体(prefab)等呈现给大家。工作界面如图1所示、所需对象、材质等如图2所示。</p>
 <div align="center"><br><br><img src="http://p4cjhhn4q.bkt.clouddn.com/unity-%E6%89%93%E7%A0%96%E5%9D%97-1.png" alt="图1"><br></div>
 
@@ -195,183 +198,276 @@
 <h3 id="3、关于Collider"><a href="#3、关于Collider" class="headerlink" title="3、关于Collider"></a>3、关于Collider</h3><p>我们在制作墙体、挡板、砖块、球等的时候，系统会自动加上碰撞体（Collider），用来管理物体之间的碰撞。在制作这个小游戏的时候，我们要注意：一定要把Paddle和Wall的Collider适当的加大。原因如下：<br>对于挡板：由于在开发过程中，为了避免道具和砖块的相撞，我们将道具的下落位置的z轴方向给移动了一下（详见Brick.cs），如果collider不足够大，将会导致挡板无法接住道具。当然，关于碰撞问题，也可以按照上面所讲的设置层级的方法去实现。<br>而对于墙体来说，由于在最初制作该游戏的时候，没有将速度和角度的问题考虑进去（这个问题，我们最终还得用代码逻辑去解决，详见Ball.cs），由于Collider没有足够大，在球的速度发生突然变化的时候，甚至发生了球穿墙而过的情况。因此，保险起见，即使最后通过代码逻辑解决了这个问题，我们也仍然要把墙体的Collider设置的足够大。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>由于本人能力有限，很多地方都会有错误或者疏漏，我也将在以后的生活中，不断去发现问题，然后去解决问题。</p>
 
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
-  <div class="random-toc">
-    <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概况"><span class="toc-text">概况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#材质-material"><span class="toc-text">材质(material)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bounce"><span class="toc-text">Bounce</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#颜色类"><span class="toc-text">颜色类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#道具类"><span class="toc-text">道具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效果类"><span class="toc-text">效果类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预制体"><span class="toc-text">预制体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景颜色"><span class="toc-text">背景颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它"><span class="toc-text">其它</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GameManager-cs"><span class="toc-text">GameManager.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brick-cs"><span class="toc-text">Brick.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Paddle-cs"><span class="toc-text">Paddle.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ball-cs"><span class="toc-text">Ball.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Floor-cs"><span class="toc-text">Floor.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-cs"><span class="toc-text">Item.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParticleDestroy-cs"><span class="toc-text">ParticleDestroy.cs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、碰撞问题"><span class="toc-text">1、碰撞问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、阴影问题"><span class="toc-text">2、阴影问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、关于Collider"><span class="toc-text">3、关于Collider</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
-  </div>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年02月25日 21:04</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/23/Unity制作简易打砖块/" title="Unity制作简易打砖块">http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/logo.png" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
 </div>
 
-  
-<nav id="pagination">
-  
-    <a href="/2018/02/25/C-C-编写简易五子棋游戏/" class="prev">&larr; 上一篇 C/C++编写简易五子棋游戏</a>
-  
+      
+        
+            
 
-  
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/&title=《Unity制作简易打砖块》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/&title=《Unity制作简易打砖块》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity制作简易打砖块》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/02/23/Unity制作简易打砖块/" alt="微信分享二维码">
+</div>
 
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Unity/" class="color1">Unity</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概况"><span class="post-toc-text">概况</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#材质-material"><span class="post-toc-text">材质(material)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Bounce"><span class="post-toc-text">Bounce</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#颜色类"><span class="post-toc-text">颜色类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#道具类"><span class="post-toc-text">道具类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#效果类"><span class="post-toc-text">效果类</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#预制体"><span class="post-toc-text">预制体</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#背景颜色"><span class="post-toc-text">背景颜色</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其它"><span class="post-toc-text">其它</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-text">代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GameManager-cs"><span class="post-toc-text">GameManager.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Brick-cs"><span class="post-toc-text">Brick.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Paddle-cs"><span class="post-toc-text">Paddle.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Ball-cs"><span class="post-toc-text">Ball.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Floor-cs"><span class="post-toc-text">Floor.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Item-cs"><span class="post-toc-text">Item.cs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ParticleDestroy-cs"><span class="post-toc-text">ParticleDestroy.cs</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意事项"><span class="post-toc-text">注意事项</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、碰撞问题"><span class="post-toc-text">1、碰撞问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、阴影问题"><span class="post-toc-text">2、阴影问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、关于Collider"><span class="post-toc-text">3、关于Collider</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-text">后记</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
   
-    <a href="/2018/02/17/世界上最不缺的事物之一就是脖子上顶着一个脑袋的人/" class="next">下一篇 世界上最不缺的事物之一就是脖子上顶着一个脑袋的人 &rarr;</a>
+    <a href="/2018/02/25/C-C-编写简易五子棋游戏/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          C/C++编写简易五子棋游戏
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/17/世界上最不缺的事物之一就是脖子上顶着一个脑袋的人/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">世界上最不缺的事物之一就是脖子上顶着一个脑袋的人</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
 
 
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
     </div>
   </div>
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Johnny Zhu using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="/pic/head.jpg">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/JohnnyZhunan">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
-</div>
-
-
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
-
-
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
-
-
-
-  turnoffBackgroundImage = true;
-
-
-var backgroundColor = "34495E";
-
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
   }
-});
-
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a><a class="category-link" href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
 </body>
 </html>
-

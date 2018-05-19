@@ -1,155 +1,146 @@
-
-
-
-
-
-
-
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
   
-  <meta name="author" content="Johnny Zhu">
+  <title>hdu1013 Digital Roots | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="问题描述The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contains">
+<meta name="keywords" content="算法竞赛基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hdu1013 Digital Roots">
+<meta property="og:url" content="http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="问题描述The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contains">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-22T04:50:21.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hdu1013 Digital Roots">
+<meta name="twitter:description" content="问题描述The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contains">
   
   
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
   
   
-    <meta name="description" content="问题描述The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contai...">
-  
-  <title>hdu1013 Digital Roots [ Johnny Zhu's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
+
 </head>
 
 <body>
-<div class="side-navigate hide-area">
-  
-    <div class="item prev">
-      <a href="/2018/02/17/深度优先搜索与广度优先搜索/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        深度优先搜索与广度优先搜索
-      </div>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Johnny&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Johnny&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        总觉得自己还差的很远
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
     </div>
-  
-  
-    <div class="item next">
-      <a href="/2018/02/17/hdu1003-Max-Sum/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        hdu1003 Max Sum
-      </div>
-    </div>
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="/pic/head.jpg"/>
-          <div id="homelink">Johnny Zhu's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">主页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">所有文章</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于我</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article id="post">
-    <h1>hdu1013 Digital Roots</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-02-17</span>
-      
-        <span id = "post-title-updated">修改于 2018-04-22</span>
-      
-      
-      <span id = "post-title-categories">分类
-      
-      
-        
-        
-        <a href="/categories/2018年2月/">2018年2月</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      标签
-      
-      
-        
-        
-        <a href="/tags/算法竞赛基础/">算法竞赛基础</a>
-      
-      </span>
-      
-    </p>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-hdu1013-Digital-Roots" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contains two or more digits, those digits are summed and the process is repeated. This is continued as long as necessary to obtain a single digit.</p>
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      hdu1013 Digital Roots
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年2月/">2018年2月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>The digital root of a positive integer is found by summing the digits of the integer. If the resulting value is a single digit then that digit is the digital root. If the resulting value contains two or more digits, those digits are summed and the process is repeated. This is continued as long as necessary to obtain a single digit.</p>
 <p>For example, consider the positive integer 24. Adding the 2 and the 4 yields a value of 6. Since 6 is a single digit, 6 is the digital root of 24. Now consider the positive integer 39. Adding the 3 and the 9 yields 12. Since 12 is not a single digit, the process must be repeated. Adding the 1 and the 2 yeilds 3, a single digit and also the digital root of 39.</p>
 <p><strong>Input</strong><br>The input file will contain a list of positive integers, one per line. The end of the input will be indicated by an integer value of zero.</p>
 <p><strong>Output</strong><br>For each integer in the input, output its digital root on a separate line of the output.</p>
@@ -158,183 +149,276 @@
 <h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><p>这是一道比较基础的题，题中例子给的比较详尽。按照题中所给的39这个数字的例子，在进行一次运算之后，又经历相同道理的又一次运算，让人很容易联想到递归。</p>
 <p>本题代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ans</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = n%<span class="number">10</span>;</span><br><span class="line">        n = n/<span class="number">10</span>;</span><br><span class="line">        sum += temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sum&gt;<span class="number">9</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans(sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span>==len&amp;&amp;s[<span class="number">0</span>]==<span class="string">'0'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            num += <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(s[i]-<span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans(num)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
-  <div class="random-toc">
-    <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解析"><span class="toc-text">问题解析</span></a></li></ol>
-  </div>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年04月22日 12:50</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/17/hdu1013-Digital-Roots/" title="hdu1013 Digital Roots">http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/logo.png" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
 </div>
 
-  
-<nav id="pagination">
-  
-    <a href="/2018/02/17/深度优先搜索与广度优先搜索/" class="prev">&larr; 上一篇 深度优先搜索与广度优先搜索</a>
-  
+      
+        
+            
 
-  
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/&title=《hdu1013 Digital Roots》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/&title=《hdu1013 Digital Roots》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hdu1013 Digital Roots》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/02/17/hdu1013-Digital-Roots/" alt="微信分享二维码">
+</div>
 
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/算法竞赛基础/" class="color2">算法竞赛基础</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题解析"><span class="post-toc-text">问题解析</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
   
-    <a href="/2018/02/17/hdu1003-Max-Sum/" class="next">下一篇 hdu1003 Max Sum &rarr;</a>
+    <a href="/2018/02/17/深度优先搜索与广度优先搜索/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          深度优先搜索与广度优先搜索
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/17/hdu1003-Max-Sum/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">hdu1003 Max Sum</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
 
 
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
     </div>
   </div>
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Johnny Zhu using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="/pic/head.jpg">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/JohnnyZhunan">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
-</div>
-
-
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
-
-
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
-
-
-
-  turnoffBackgroundImage = true;
-
-
-var backgroundColor = "34495E";
-
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
   }
-});
-
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a><a class="category-link" href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
 </body>
 </html>
-

@@ -1,164 +1,148 @@
-
-
-
-
-
-
-
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
   
-  <meta name="author" content="Johnny Zhu">
+  <title>Unity使用总结（五） | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="Unity生命周期在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：Unity生命周期   在看这副图的时候，再结合这个链接：Unity生命周期顺便将一些关键的介绍贴出来：最先执行的方法是Awake，这是生命周期的开始，用于进行激活时的初始化代码，一般可以在这个地方将当前脚本禁用:this.enable=false，如果这样做了，则会直接跳转到O">
+<meta name="keywords" content="Unity,C#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity使用总结（五）">
+<meta property="og:url" content="http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="Unity生命周期在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：Unity生命周期   在看这副图的时候，再结合这个链接：Unity生命周期顺便将一些关键的介绍贴出来：最先执行的方法是Awake，这是生命周期的开始，用于进行激活时的初始化代码，一般可以在这个地方将当前脚本禁用:this.enable=false，如果这样做了，则会直接跳转到O">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/%E5%9B%BE1.jpg">
+<meta property="og:updated_time" content="2018-05-12T13:28:44.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity使用总结（五）">
+<meta name="twitter:description" content="Unity生命周期在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：Unity生命周期   在看这副图的时候，再结合这个链接：Unity生命周期顺便将一些关键的介绍贴出来：最先执行的方法是Awake，这是生命周期的开始，用于进行激活时的初始化代码，一般可以在这个地方将当前脚本禁用:this.enable=false，如果这样做了，则会直接跳转到O">
+<meta name="twitter:image" content="http://p4cjhhn4q.bkt.clouddn.com/%E5%9B%BE1.jpg">
   
   
+    <link rel="icon" href="/favicon.ico">
   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
   
-    <meta name="description" content="Unity生命周期在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：Unity生命周期
 
+  
+  
 
-在看这副图的时候，再结合这个链接：Unity生命周期顺便将一些关键的介绍贴出来：最先执行的方法是Awake，这是生命周期的开始，用于进行激活时的初始化代码，一般可以在这个地方将当前脚本禁用:this.enable=false，如果这样做了，则会直接跳...">
-  
-  <title>Unity使用总结（五） [ Johnny Zhu's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
 </head>
 
 <body>
-<div class="side-navigate hide-area">
-  
-    <div class="item prev">
-      <a href="/2018/05/12/C-字符串的用法/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        C#:字符串的用法（一）
-      </div>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Johnny&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Johnny&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        总觉得自己还差的很远
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
     </div>
-  
-  
-    <div class="item next">
-      <a href="/2018/05/05/Unity总结（四）/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        Unity总结（四）
-      </div>
-    </div>
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="/pic/head.jpg"/>
-          <div id="homelink">Johnny Zhu's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">主页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">所有文章</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于我</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article id="post">
-    <h1>Unity使用总结（五）</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-05-12</span>
-      
-        <span id = "post-title-updated">修改于 2018-05-12</span>
-      
-      
-      <span id = "post-title-categories">分类
-      
-      
-        
-        
-        <a href="/categories/2018年5月/">2018年5月</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      标签
-      
-      
-        
-        
-        <a href="/tags/C/">C#</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/Unity/">Unity</a>
-      
-      </span>
-      
-    </p>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Unity使用总结（五）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <h2 id="Unity生命周期"><a href="#Unity生命周期" class="headerlink" title="Unity生命周期"></a>Unity生命周期</h2><p>在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：<br><a href="www.xuanyusong.com/archives/3225">Unity生命周期</a></p>
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Unity使用总结（五）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年5月/">2018年5月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-12
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="Unity生命周期"><a href="#Unity生命周期" class="headerlink" title="Unity生命周期"></a>Unity生命周期</h2><p>在网上一顿找，找到了这个这个图，是我有史以来见到的最为详尽的一个介绍生命周期的图，这幅图来自这篇链接：<br><a href="www.xuanyusong.com/archives/3225">Unity生命周期</a></p>
 <div align="center"><br><br><img src="http://p4cjhhn4q.bkt.clouddn.com/%E5%9B%BE1.jpg" alt="图一"><br><br></div>
 
 <p>在看这副图的时候，再结合这个链接：<br><a href="https://blog.csdn.net/qitian67/article/details/18516503" target="_blank" rel="noopener">Unity生命周期</a><br>顺便将一些关键的介绍贴出来：<br>最先执行的方法是Awake，这是生命周期的开始，用于进行激活时的初始化代码，一般可以在这个地方将当前脚本禁用:this.enable=false，如果这样做了，则会直接跳转到OnDisable方法执行一次，然后其它的任何方法，都将不再被执行。<br>如果当前脚本处于可用状态，则正常的执行顺序是继续向下执行OnEnable，当然我们可以在另外一个脚本中实现这个脚本组件的启动：this.enab=true;<br>再向下执行，会进行一个判断，如果Start方法还没有被执行，则会被执行一次，如果已经被执行了，则不会再被执行。这是个什么意思呢？我们可以在某个脚本中将组件禁用this.enable=false，再启用时会转到OnEnable处执行，这时继续向下走，发现Start执行过了，将不再被执行。比如说：第一次启用时，将怪物的初始位置定在了(0,0,0)点，然后怪物可能会发生了位置的变换，后来被禁用了，再次启用时，不会让怪物又回到初始的(0,0,0)位置。<br>继续向后执行，就是Update了，然后是FixUpdate，再然后是LateUpdate，如果后面写了Reset，则会又回到Update，在这4个事件间可以进行循环流动。<br>再向后执行，就进入了渲染模块（Rendering），非常重要的一个方法就是OnGUI，用于绘制图形界面。当然，如果你使用了NGUI，这个生命周期的事情你就不用考虑了。<br>再向后，就是卸载模块（TearDown），这里主要有两个方法OnDisable与OnDestroy。当被禁用(enable=false)时，会执行OnDisable方法，但是这个时候，脚本并不会被销毁，在这个状态下，可以重新回到OnEnable状态（enable=true）。当手动销毁或附属的游戏对象被销毁时，OnDestroy才会被执行，当前脚本的生命周期结束。</p>
@@ -172,183 +156,278 @@
 
 <h2 id="如何获取Game-Viewer的视图大小"><a href="#如何获取Game-Viewer的视图大小" class="headerlink" title="如何获取Game Viewer的视图大小"></a>如何获取Game Viewer的视图大小</h2><p>Unity提供了Screen.width和Screen.height，当你调用这两个属性的时候，就可以获取GameViewer视图的宽和高。<br>如果你在Update（）当中使用它们，并且打上Debug.Log日志，然后运行Unity，在GameViewer视图当中，将屏幕比例改成Free Aspect，那么当你拖动GameViewer窗口的时候，通过你的日志，你就会发现，屏幕的宽和高真的在实时的发生变化。</p>
 
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
-  <div class="random-toc">
-    <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity生命周期"><span class="toc-text">Unity生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LateUpdate-Update-FixedUpdate"><span class="toc-text">LateUpdate/Update/FixedUpdate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-当中的属性"><span class="toc-text">C#当中的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对UIPanel-的-clipping和Anchors的理解"><span class="toc-text">对UIPanel 的 clipping和Anchors的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取组件，以及通过组件找GameObject"><span class="toc-text">获取组件，以及通过组件找GameObject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何获取Game-Viewer的视图大小"><span class="toc-text">如何获取Game Viewer的视图大小</span></a></li></ol>
-  </div>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年05月12日 21:28</p>
+        <p>原始链接： <a class="post-url" href="/2018/05/12/Unity使用总结（五）/" title="Unity使用总结（五）">http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/logo.png" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
 </div>
 
-  
-<nav id="pagination">
-  
-    <a href="/2018/05/12/C-字符串的用法/" class="prev">&larr; 上一篇 C#:字符串的用法（一）</a>
-  
+      
+        
+            
 
-  
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/&title=《Unity使用总结（五）》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/&title=《Unity使用总结（五）》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity使用总结（五）》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/05/12/Unity使用总结（五）/" alt="微信分享二维码">
+</div>
 
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Unity/" class="color1">Unity</a>
+      
+    <a href="/tags/C#/" class="color3">C#</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unity生命周期"><span class="post-toc-text">Unity生命周期</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LateUpdate-Update-FixedUpdate"><span class="post-toc-text">LateUpdate/Update/FixedUpdate</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-当中的属性"><span class="post-toc-text">C#当中的属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对UIPanel-的-clipping和Anchors的理解"><span class="post-toc-text">对UIPanel 的 clipping和Anchors的理解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取组件，以及通过组件找GameObject"><span class="post-toc-text">获取组件，以及通过组件找GameObject</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何获取Game-Viewer的视图大小"><span class="post-toc-text">如何获取Game Viewer的视图大小</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
   
-    <a href="/2018/05/05/Unity总结（四）/" class="next">下一篇 Unity总结（四） &rarr;</a>
+    <a href="/2018/05/12/C-字符串的用法/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          C#:字符串的用法（一）
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/05/05/Unity总结（四）/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Unity总结（四）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
 
 
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
     </div>
   </div>
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Johnny Zhu using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="/pic/head.jpg">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/JohnnyZhunan">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
-</div>
-
-
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
-
-
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
-
-
-
-  turnoffBackgroundImage = true;
-
-
-var backgroundColor = "34495E";
-
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
   }
-});
-
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a><a class="category-link" href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
 </body>
 </html>
-

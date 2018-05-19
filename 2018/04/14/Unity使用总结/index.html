@@ -1,155 +1,149 @@
-
-
-
-
-
-
-
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
   
-  <meta name="author" content="Johnny Zhu">
+  <title>Unity使用总结（一） | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="TexturePacker的使用在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：NGUI使用心得之使用Te">
+<meta name="keywords" content="Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity使用总结（一）">
+<meta property="og:url" content="http://www.kuailegou.win/2018/04/14/Unity使用总结/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="TexturePacker的使用在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：NGUI使用心得之使用Te">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/Unity%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89_1.png">
+<meta property="og:image" content="http://p4cjhhn4q.bkt.clouddn.com/Unity%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89_2.png">
+<meta property="og:updated_time" content="2018-04-14T08:52:54.759Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity使用总结（一）">
+<meta name="twitter:description" content="TexturePacker的使用在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：NGUI使用心得之使用Te">
+<meta name="twitter:image" content="http://p4cjhhn4q.bkt.clouddn.com/Unity%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89_1.png">
   
   
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
   
   
-    <meta name="description" content="TexturePacker的使用在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：NGUI使用心得之使...">
-  
-  <title>Unity使用总结（一） [ Johnny Zhu's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
+
 </head>
 
 <body>
-<div class="side-navigate hide-area">
-  
-    <div class="item prev">
-      <a href="/2018/04/14/26岁没有谈过恋爱的男生是个什么心态？/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        26岁没有谈过恋爱的男生是个什么心态？
-      </div>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Johnny&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Johnny&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        总觉得自己还差的很远
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
     </div>
-  
-  
-    <div class="item next">
-      <a href="/2018/02/28/Unity实现卡牌翻转核心功能/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        Unity实现卡牌翻转核心功能
-      </div>
-    </div>
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="/pic/head.jpg"/>
-          <div id="homelink">Johnny Zhu's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">主页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">所有文章</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于我</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article id="post">
-    <h1>Unity使用总结（一）</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">撰写于 2018-04-14</span>
-      
-        <span id = "post-title-updated">修改于 2018-04-14</span>
-      
-      
-      <span id = "post-title-categories">分类
-      
-      
-        
-        
-        <a href="/categories/2018年4月/">2018年4月</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      标签
-      
-      
-        
-        
-        <a href="/tags/Unity/">Unity</a>
-      
-      </span>
-      
-    </p>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Unity使用总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <h2 id="TexturePacker的使用"><a href="#TexturePacker的使用" class="headerlink" title="TexturePacker的使用"></a>TexturePacker的使用</h2><p>在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。<br>关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：<br><a href="https://blog.csdn.net/zoominhao/article/details/49302187" target="_blank" rel="noopener">NGUI使用心得之使用TexturePacker创建图集</a></p>
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Unity使用总结（一）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年4月/">2018年4月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-04-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="TexturePacker的使用"><a href="#TexturePacker的使用" class="headerlink" title="TexturePacker的使用"></a>TexturePacker的使用</h2><p>在使用Unity制作UI的时候，免不了打图集，打图集的话，你可以使用NGUI自带的Atlas Maker直接制作一个，但是NGUI做出来的图集往往体积更大，图集优化的也不够好。这个时候，用TexturePacker打图集就是一个不错的选择。<br>关于TexturePacker，网上的教程非常多，但是本人看到的教程当中，个人认为这个最好，链接如下：<br><a href="https://blog.csdn.net/zoominhao/article/details/49302187" target="_blank" rel="noopener">NGUI使用心得之使用TexturePacker创建图集</a></p>
 <p>这篇博文写的可谓是非常详细，但是在使用texturePacker的过程中，对于图集的设置一定要设置正确，否则会造成意想不到的结果，我由于在使用过程中，没有设置正确，造成了图集剪切不齐的情况。<br>由于上述链接当中，博主所使用TexturePacker与我使用的版本有所不同，所以，在这里告诉大家一些关键设置，尤其是针对Unity的使用者：<br>FrameWork： Unity®–JSON data(.txt)<br>Algorithm: Basic<br>Texture Format: PNG-32<br>Size constraints: POT(power of 2)<br>至于其它的过程，按照上述链接的做法照做即可。</p>
 <h2 id="NGUI-制作一个纯色背景"><a href="#NGUI-制作一个纯色背景" class="headerlink" title="NGUI 制作一个纯色背景"></a>NGUI 制作一个纯色背景</h2><p>一般在制作UI的过程中，绝大多数情况下，美工都会把大多数背景制作出来，但是有些时候，作为NGUI的使用者，也不必什么事情都麻烦美工，毕竟也有不少东西用Unity本身就可以做出来，比如制作纯色背景。<br>当然了，你也可以用美工现给你设计的背景去制作一个纯色背景，不过，除非美工给你设计的是一个白色的背景，否则调颜色将会非常难调整，因为你所调整的颜色，是Color Hint当中的颜色与你所选取的颜色的叠加颜色。<br>那么，如何制作一个纯色背景呢？首先，打开NGUI，创建一个2d Sprite 如图一所示：</p>
 <div align="center"><br><br><img src="http://p4cjhhn4q.bkt.clouddn.com/Unity%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89_1.png" alt="图一"><br><br></div>
@@ -160,183 +154,276 @@
 <h2 id="Unity当中的Depth值"><a href="#Unity当中的Depth值" class="headerlink" title="Unity当中的Depth值"></a>Unity当中的Depth值</h2><p>在使用Unity的过程中，如果Depth调整不好，那么就会造成一些不必要的遮挡效果，关于Depth值到底是什么，建议大家参考以下这个链接：<br><a href="https://blog.csdn.net/monzart7an/article/details/23794301" target="_blank" rel="noopener">NGUI中深度depth和z轴关系</a><br>总而言之，Depth个人认为是一个控制相机渲染顺序的属性值，往往Depth越大，越先显示。<br>在以上链接中，提及了一个名词：Panel，值得注意的是，UI Panel(Script) 不可以和widget同时挂载，而widget是一个随时可能出现的东西，你创建一个Container，或者创建一个Sprite时，都会带上widget，此时，你若再往上挂UI Panel，Unity就会报错。诸如：Widget and panels should not be on the same object…这样的错误。</p>
 <h2 id="九宫切图"><a href="#九宫切图" class="headerlink" title="九宫切图"></a>九宫切图</h2><p>参考这个链接即可：<br><a href="https://blog.csdn.net/MaximilianLiu/article/details/78170113" target="_blank" rel="noopener">切图SlicedSprite九宫切图</a></p>
 
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
-  <div class="random-toc">
-    <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TexturePacker的使用"><span class="toc-text">TexturePacker的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NGUI-制作一个纯色背景"><span class="toc-text">NGUI 制作一个纯色背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity当中的Depth值"><span class="toc-text">Unity当中的Depth值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫切图"><span class="toc-text">九宫切图</span></a></li></ol>
-  </div>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年04月14日 16:52</p>
+        <p>原始链接： <a class="post-url" href="/2018/04/14/Unity使用总结/" title="Unity使用总结（一）">http://www.kuailegou.win/2018/04/14/Unity使用总结/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/logo.png" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
 </div>
 
-  
-<nav id="pagination">
-  
-    <a href="/2018/04/14/26岁没有谈过恋爱的男生是个什么心态？/" class="prev">&larr; 上一篇 26岁没有谈过恋爱的男生是个什么心态？</a>
-  
+      
+        
+            
 
-  
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/04/14/Unity使用总结/&title=《Unity使用总结（一）》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/04/14/Unity使用总结/&title=《Unity使用总结（一）》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/04/14/Unity使用总结/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity使用总结（一）》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/04/14/Unity使用总结/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/04/14/Unity使用总结/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/04/14/Unity使用总结/" alt="微信分享二维码">
+</div>
 
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Unity/" class="color1">Unity</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TexturePacker的使用"><span class="post-toc-text">TexturePacker的使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NGUI-制作一个纯色背景"><span class="post-toc-text">NGUI 制作一个纯色背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Unity当中的Depth值"><span class="post-toc-text">Unity当中的Depth值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#九宫切图"><span class="post-toc-text">九宫切图</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
   
-    <a href="/2018/02/28/Unity实现卡牌翻转核心功能/" class="next">下一篇 Unity实现卡牌翻转核心功能 &rarr;</a>
+    <a href="/2018/04/14/26岁没有谈过恋爱的男生是个什么心态？/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          26岁没有谈过恋爱的男生是个什么心态？
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/28/Unity实现卡牌翻转核心功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Unity实现卡牌翻转核心功能</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
 
 
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
-      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
     </div>
   </div>
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Johnny Zhu using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="/pic/head.jpg">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/JohnnyZhunan">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
-</div>
-
-
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
-
-
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
-
-
-
-  turnoffBackgroundImage = true;
-
-
-var backgroundColor = "34495E";
-
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
   }
-});
-
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a><a class="category-link" href="/categories/算法竞赛-栈的应用/">算法竞赛-栈的应用</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 17.5px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
 </body>
 </html>
-
