@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="我的博客" />
   
-  <meta name="description" content="特性在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSeri">
+  <meta name="description" content="特性概况在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSe">
 <meta name="keywords" content="C#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C#特性">
 <meta property="og:url" content="http://www.kuailegou.win/2018/09/23/C-特性/index.html">
 <meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
-<meta property="og:description" content="特性在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSeri">
+<meta property="og:description" content="特性概况在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-23T13:34:38.193Z">
+<meta property="og:updated_time" content="2018-09-23T14:06:52.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C#特性">
-<meta name="twitter:description" content="特性在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSeri">
+<meta name="twitter:description" content="特性概况在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSe">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -150,12 +150,13 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。<br>C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSerializable），除了这两个比较常用的外，另几个比较常用的如下所示：<br>一、Obsolete特性：它标记了一个不应该再被使用的程序实体<br>通常情况，一个软件在研发过程当中，代码会经历反复修改，比如说，我们之前定义并使用了一个旧的方法，随着软件开发进度的进展，我们发现旧的方法不再适用了，于是我们又重新定义并实现了一个新的方法。那么如何处置旧的方法呢？<br>首先，你可以删除掉旧的方法，但是，这样的话，曾经使用旧的方法的那些部分就会报出编译错误，如果代码量少的话，逐个修改没什么问题，但是，如果，代码量特别庞大呢？这个时候，我们就可以用特性了。<br>如下所示：</p>
+            <h2 id="特性概况"><a href="#特性概况" class="headerlink" title="特性概况"></a>特性概况</h2><p>在MSDN当中，特性是这么定义的：特性是被指定给某一声明的一则附加的声明性信息。 在使用特性的时候，相当于我们增加了程序集当中的元数据，元数据又是怎么加进去的呢？我们知道，编过的代码需要经历编译器的编译，才能变成程序集，特性也是在编译器的编译过程中加入到了程序集。<br>C#当中为我们提供了许多特性，Unity编程当中，最为常见的两个，其实是序列化（Serializable）和反序列化（NonSerializable），除了这两个比较常用的外，另几个比较常用的如下所示：</p>
+<h3 id="Obsolete特性"><a href="#Obsolete特性" class="headerlink" title="Obsolete特性"></a>Obsolete特性</h3><p>该特性标记了一个不应该再被使用的程序实体<br>通常情况，一个软件在研发过程当中，代码会经历反复修改，比如说，我们之前定义并使用了一个旧的方法，随着软件开发进度的进展，我们发现旧的方法不再适用了，于是我们又重新定义并实现了一个新的方法。那么如何处置旧的方法呢？<br>首先，你可以删除掉旧的方法，但是，这样的话，曾经使用旧的方法的那些部分就会报出编译错误，如果代码量少的话，逐个修改没什么问题，但是，如果，代码量特别庞大呢？这个时候，我们就可以用特性了。<br>如下所示：</p>
 <p>注意，此时，VS编译器会在旧的方法下面画上醒目的波浪线，用以提示开发人员这是一个旧的方法，但是，如果编译运行的话，旧的方法依然会正常调用。</p>
-<p>二、Conditional特性<br>该特性运行我们包括或者取消特定方法的所有调用。<br>举个例子，假设在软件开发过程中，我们发现有一个方法无需再继续使用了，而且也不需要找到什么替代的方法，这个时候，我们如果继续使用obsolete特性，那么该方法还是会被调用到。如果我们将该方法删除，再一个个删除，或者把调用这个方法找的部分一个个找到，再一个一个注释，那么这样就会很麻烦。这时，我们可以使用Conditional特性，它可以起到一个对所标记的方法进行批量注释的作用。</p>
-<p>三、调用者信息特性<br>与Obsolete和Conditional对方法进行标记不同，调用者信息特性主要是对参数进行标记。<br>有几个重要的调用者信息特性：<br>1.[CallerFilePath]:调用文件的名称（路径）;<br>2.[CallerLineNumber]:代表行数；<br>3.[CallerMemberName]: 方法名称.</p>
-<p>四、DebuggerStepThrough特性<br>在面向对象编程中，由于各个方法和类往往是相互关联，相互套叠的，当我们Debbug代码的时候，一般情况下，我们只想调试这一个方法，然后继续调试下一行。但往往我们会debug好多行之后，才会调试到我们想调试的那一行。<br>标记为DebuggerStepThrough特性的方法，可以使我们在Debug代码时，跳过这个方法，这样可以提高Debug的速度和效率。</p>
-<p>五、自定义特性<br>不管是什么特性，包括系统提供给我们的那些特性，其实都是一个个的类，因此我们如果要自定义一个类，那么，我们得创建一个类。注意：<br>1.定义特性的时候，这个类要继承System.Attribute<br>2.大多数情况，特性是不允许被继承的，所以我们要在这个类的前方加上sealed关键字。即，不允许被继承。<br>3.无论我们在方法还是在方法的参数前方加入特性标签，都意味着它们的使用状态发生了一定的改变。所以，特性类当中肯定需要很多跟状态有关的东西，这就意味着在特性类当中，我们需要定义大量的属性或者字段。<br>4.命名上，自定义属性必须遵循一点：名字要以Attribute结尾，而在使用的时候，Attribute这个结尾会被系统给自动去掉。</p>
+<h3 id="Conditional特性"><a href="#Conditional特性" class="headerlink" title="Conditional特性"></a>Conditional特性</h3><p>该特性运行我们包括或者取消特定方法的所有调用。<br>举个例子，假设在软件开发过程中，我们发现有一个方法无需再继续使用了，而且也不需要找到什么替代的方法，这个时候，我们如果继续使用obsolete特性，那么该方法还是会被调用到。如果我们将该方法删除，再一个个删除，或者把调用这个方法找的部分一个个找到，再一个一个注释，那么这样就会很麻烦。这时，我们可以使用Conditional特性，它可以起到一个对所标记的方法进行批量注释的作用。</p>
+<h3 id="调用者信息特性"><a href="#调用者信息特性" class="headerlink" title="调用者信息特性"></a>调用者信息特性</h3><p>与Obsolete和Conditional对方法进行标记不同，调用者信息特性主要是对参数进行标记。<br>有几个重要的调用者信息特性：<br>1.[CallerFilePath]:调用文件的名称（路径）;<br>2.[CallerLineNumber]:代表行数；<br>3.[CallerMemberName]: 方法名称.</p>
+<h3 id="DebuggerStepThrough特性"><a href="#DebuggerStepThrough特性" class="headerlink" title="DebuggerStepThrough特性"></a>DebuggerStepThrough特性</h3><p>在面向对象编程中，由于各个方法和类往往是相互关联，相互套叠的，当我们Debbug代码的时候，一般情况下，我们只想调试这一个方法，然后继续调试下一行。但往往我们会debug好多行之后，才会调试到我们想调试的那一行。<br>标记为DebuggerStepThrough特性的方法，可以使我们在Debug代码时，跳过这个方法，这样可以提高Debug的速度和效率。</p>
+<h3 id="自定义特性"><a href="#自定义特性" class="headerlink" title="自定义特性"></a>自定义特性</h3><p>不管是什么特性，包括系统提供给我们的那些特性，其实都是一个个的类，因此我们如果要自定义一个类，那么，我们得创建一个类。注意：<br>1.定义特性的时候，这个类要继承System.Attribute<br>2.大多数情况，特性是不允许被继承的，所以我们要在这个类的前方加上sealed关键字。即，不允许被继承。<br>3.无论我们在方法还是在方法的参数前方加入特性标签，都意味着它们的使用状态发生了一定的改变。所以，特性类当中肯定需要很多跟状态有关的东西，这就意味着在特性类当中，我们需要定义大量的属性或者字段。<br>4.命名上，自定义属性必须遵循一点：名字要以Attribute结尾，而在使用的时候，Attribute这个结尾会被系统给自动去掉。</p>
 <p>定义出来之后，我们就可以使用特性，那么，怎样能调用到自定义特性当中的这些属性和字段呢？这时，我们应知道这样一件事情：当我们使用特性当中的这些属性时，其实是在调用属性类当中的这些构造方法，因此，我们只需为我们定义的这几个属性写上与之对应的构造方法即可。在实例代码当中，[My()]双引号之间的“自定义特性”就是这种情况。<br>除此之外，我们还可以使用命名参数的方法，示例代码当中ID = “10”就是这种方式</p>
 <p>万事俱备了，那么怎么获取一个类当中使用了哪些特性呢？<br>这时，另一个重要的概念Type再次被提了出来。</p>
 <p>示例代码：<br>1.自定义特性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Attribute</span><br><span class="line">&#123;</span><br><span class="line">    [AttributeUsage(AttributeTargets.Class)] //AttributeTarget代表特性可以应用的对象，本例子中，代表运用在类当中</span><br><span class="line">    sealed class MyAttribute:System.Attribute</span><br><span class="line">    &#123;</span><br><span class="line">        public string Description &#123; get; set; &#125;</span><br><span class="line">        public string ID &#123; get; set; &#125;</span><br><span class="line">        public string Function &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">        public MyAttribute(string description)</span><br><span class="line">        &#123;</span><br><span class="line">            this.Description = description;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -163,7 +164,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年09月23日 21:34</p>
+        <p>最后更新： 2018年09月23日 22:06</p>
         <p>原始链接： <a class="post-url" href="/2018/09/23/C-特性/" title="C#特性">http://www.kuailegou.win/2018/09/23/C-特性/</a></p>
         <footer>
             <a href="http://www.kuailegou.win">
@@ -250,12 +251,22 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特性"><span class="post-toc-text">特性</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特性概况"><span class="post-toc-text">特性概况</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Obsolete特性"><span class="post-toc-text">Obsolete特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Conditional特性"><span class="post-toc-text">Conditional特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调用者信息特性"><span class="post-toc-text">调用者信息特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DebuggerStepThrough特性"><span class="post-toc-text">DebuggerStepThrough特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义特性"><span class="post-toc-text">自定义特性</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
+  
+    <a href="/2018/10/14/C-进程和线程/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          C#进程和线程
+        
+      </span>
+    </a>
   
   
     <a href="/2018/09/23/C-反射/" id="article-nav-older" class="article-nav-link-wrap">
@@ -335,7 +346,7 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/2018年8月/">2018年8月</a><a class="category-link" href="/categories/2018年9月/">2018年9月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
+            <a class="category-link" href="/categories/2018年10月/">2018年10月</a><a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/2018年8月/">2018年8月</a><a class="category-link" href="/categories/2018年9月/">2018年9月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
         </div>
         <div id="sidebar-menu-box-tags">
             <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 17.5px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>

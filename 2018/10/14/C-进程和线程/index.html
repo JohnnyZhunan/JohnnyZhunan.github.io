@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C#进程和线程 | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="基本概念进程一般操作系统教材对进程的解释如下：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。如果进行一个概括性的总结：进程就是一个程序执行的过程。不过，这个过程涉及的东西可不少，主要有两个： 进程实体这个是比较具体的概念，不是那么抽象，一般情况下进程实体包括文本区域（text regi">
+<meta name="keywords" content="C#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#进程和线程">
+<meta property="og:url" content="http://www.kuailegou.win/2018/10/14/C-进程和线程/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="基本概念进程一般操作系统教材对进程的解释如下：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。如果进行一个概括性的总结：进程就是一个程序执行的过程。不过，这个过程涉及的东西可不少，主要有两个： 进程实体这个是比较具体的概念，不是那么抽象，一般情况下进程实体包括文本区域（text regi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-14T10:08:52.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#进程和线程">
+<meta name="twitter:description" content="基本概念进程一般操作系统教材对进程的解释如下：进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。如果进行一个概括性的总结：进程就是一个程序执行的过程。不过，这个过程涉及的东西可不少，主要有两个： 进程实体这个是比较具体的概念，不是那么抽象，一般情况下进程实体包括文本区域（text regi">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">织梦星辰</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/head.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        织梦星辰
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        人心生一念,天地悉皆知,善恶若无报,乾坤必有私
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-C-进程和线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      C#进程和线程
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年10月/">2018年10月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-10-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>一般操作系统教材对进程的解释如下：<br>进程是一个具有一定独立功能的程序关于某个数据集合的一次运行活动。它是操作系统动态执行的基本单元，在传统的操作系统中，进程既是基本的分配单元，也是基本的执行单元。<br>如果进行一个概括性的总结：进程就是一个程序执行的过程。不过，这个过程涉及的东西可不少，主要有两个：</p>
+<h4 id="进程实体"><a href="#进程实体" class="headerlink" title="进程实体"></a>进程实体</h4><p>这个是比较具体的概念，不是那么抽象，一般情况下进程实体包括文本区域（text region）、数据区域（data region）和堆栈（stack region）。<br>(1)文本区域：用于存储处理器执行的代码。<br>(2)数据区域：存储变量和进程执行期间使用的动态分配的内存<br>(3)堆栈区域：存储着活动过程调用的指令和本地变量</p>
+<h4 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h4><p>进程有三个状态，就绪、运行和阻塞<br>(1)就绪状态：即准备好运行的状态，进入该状态之后，只要处理器分配，该进程就会执行。<br>(2)运行状态：此时，进程获得了处理器分配的资源，程序开始执行<br>(3)阻塞状态：当发生一些突发事件，比如说必要的I/O操作，或者更为紧急而重要的进程需要执行的时候，此时受到牵涉的进程需要暂停当前的状态，等紧急的事情处理完了，再继续执行，这就是阻塞状态。</p>
+<p>需要注意的是。程序是一个没有生命的实体，只有处理器赋予程序生命时，它才能成为一个活动的实体，此时的程序，才被称为进程。</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>通常在一个进程中可以包含若干个线程，一个进程当中至少有一个线程。线程可以利用进程所拥有的资源，在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位，由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更高效的提高系统多个程序间并发执行的程度。</p>
+<h3 id="形象的比喻"><a href="#形象的比喻" class="headerlink" title="形象的比喻"></a>形象的比喻</h3><p>曾经看到一个博文，对CPU，进程和线程进行来看一个很形象的比喻，该比喻如下：<br>参考链接：<br><a href="https://www.cnblogs.com/dreamroute/p/5207813.html" target="_blank" rel="noopener">进程与线程的一个简单解释</a><br>1.计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。<br>2.假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。<br>3.进程就好比工厂的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。<br>4.一个车间里，可以有很多工人。他们协同完成一个任务。<br>5.线程就好比车间里的工人。一个进程可以包括多个线程。<br>6.车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。<br>7.可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。<br>8.一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫”互斥锁”（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。<br>9.还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。<br>10.这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做”信号量”（Semaphore），用来保证多个线程不会互相冲突。</p>
+<p>不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。</p>
+<h2 id="线程的使用"><a href="#线程的使用" class="headerlink" title="线程的使用"></a>线程的使用</h2><h3 id="开启线程"><a href="#开启线程" class="headerlink" title="开启线程"></a>开启线程</h3><p>开启线程的方法有很多，可以利用委托，可以利用Thread，可以利用线程池等，下面贴上两段代码.</p>
+<h4 id="利用委托开启线程"><a href="#利用委托开启线程" class="headerlink" title="利用委托开启线程"></a>利用委托开启线程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void Func1()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Func1&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static void Func2(int i)</span><br><span class="line">        &#123;</span><br><span class="line">            Thread.Sleep(1000); //进程暂停1000毫秒</span><br><span class="line">            Console.WriteLine(&quot;Func2 &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static int Func3(int i)</span><br><span class="line">        &#123;</span><br><span class="line">            Thread.Sleep(100);</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static void Func4()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Func4&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static string Func5(int i,string str)</span><br><span class="line">        &#123;</span><br><span class="line">            Thread.Sleep(100);</span><br><span class="line">            return &quot;Func5 &quot; + i.ToString() + &quot; &quot; + str;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Action a = Func1;</span><br><span class="line">            Action&lt;int&gt; b = Func2;</span><br><span class="line">            Func&lt;int, int&gt; c = Func3;</span><br><span class="line">            Action d = Func4;</span><br><span class="line">            Func&lt;int, string, string&gt; e = Func5;</span><br><span class="line"></span><br><span class="line">            //利用委托实现多线程</span><br><span class="line">            a.BeginInvoke(null, null); //开启一个新的线程去执行委托a,及Func1函数</span><br><span class="line">            IAsyncResult ar =  b.BeginInvoke(10, null, null); // 获取b所指向函数的进程状态</span><br><span class="line">            IAsyncResult ar_c = c.BeginInvoke(20, null, null);</span><br><span class="line"></span><br><span class="line">            while(ar.IsCompleted) //当ar，即b执行完毕之后</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Fun2执行结束&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //利用等待句柄判断线程是否结束</span><br><span class="line">            bool isFinishedInTime = ar_c.AsyncWaitHandle.WaitOne(200);//若在2000毫秒内执行完，则返回true，否则返回false</span><br><span class="line"></span><br><span class="line">            if(isFinishedInTime)</span><br><span class="line">            &#123;</span><br><span class="line">                var res = c.EndInvoke(ar_c);</span><br><span class="line">                Console.WriteLine(res);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //利用回调判断线程是否结束</span><br><span class="line">            IAsyncResult ar_d = d.BeginInvoke(OnCallBack, null);</span><br><span class="line"></span><br><span class="line">            void OnCallBack(IAsyncResult result)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Func4结束&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            e.BeginInvoke(20, &quot;aaaaa&quot;, res =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                var re = e.EndInvoke(res);</span><br><span class="line">                Console.WriteLine(re);</span><br><span class="line">            &#125;,null);</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(&quot;Main&quot;);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="利用Thread类开启线程"><a href="#利用Thread类开启线程" class="headerlink" title="利用Thread类开启线程"></a>利用Thread类开启线程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread2</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void MyMethod()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Method Start&quot; + Thread.CurrentThread.ManagedThreadId); //获取线程ID</span><br><span class="line">            Thread.Sleep(2000);</span><br><span class="line">            Console.WriteLine(&quot;Method End&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Thread thread = new Thread(MyMethod);</span><br><span class="line">            thread.Start();</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="利用线程池"><a href="#利用线程池" class="headerlink" title="利用线程池"></a>利用线程池</h4><p>在理解线程池概念之前，首先要知道一组概念：前台前程和后台线程<br>一般来说，若想判断一个程序是不是执行完了，只需看它的前台线程是否执行完了即可。对于后台线程，如果前台线程执行完了，即使后台线程没有执行完，也会被强制停止。<br>通常情况，我们用Thread类创建的对象都是前台进程，也就是说，我们在之前写的开启线程操作其实都是前台线程。而线程池则不是，线程池当中的线程都是后台线程。<br>那么什么是线程池？百度百科当中是这样解释的：<br>线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的堆栈大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在托管代码中空闲（如正在等待某个事件）,则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池线程都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后创建另一个辅助线程但线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才启动。<br>线程池有四个组成部分：<br>1、线程池管理器（ThreadPoolManager）:用于创建并管理线程池<br>2、工作线程（WorkThread）: 线程池中线程<br>3、任务接口（Task）:每个任务必须实现的接口，以供工作线程调度任务的执行。<br>4、任务队列:用于存放没有处理的任务。提供一种缓冲机制。</p>
+<p>利用线程池开启线程的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread4</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void MyMethod(Object obj)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;开始下载&quot; + Thread.CurrentThread.ManagedThreadId);</span><br><span class="line">            Thread.Sleep(2000);</span><br><span class="line">            Console.WriteLine(&quot;下载结束&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            ThreadPool.QueueUserWorkItem(MyMethod);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上这个例子，建议大家看看运行结果，侧面反映出一个事情：如果不对线程的优先级进行操控的话，那么线程的执行顺序，以及线程结束的时间是很难操控的，所以在进行异步下载的时候，总是会出现一些执行顺序相关的问题。若要尽可能的解决执行顺序的问题，就要熟练运用委托。</p>
+<h4 id="利用任务Task开启线程"><a href="#利用任务Task开启线程" class="headerlink" title="利用任务Task开启线程"></a>利用任务Task开启线程</h4><p>Task 是一个类， 它表示一个操作，而该操作不会有返回值，通常以异步方式执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread_Task</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static void MyMethod()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;线程开始&quot; + Thread.CurrentThread.ManagedThreadId);</span><br><span class="line">            Thread.Sleep(2000);</span><br><span class="line">            Console.WriteLine(&quot;线程结束&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //Task t = new Task(MyMethod); //通过Task去开启一个线程</span><br><span class="line">            //t.Start();</span><br><span class="line"></span><br><span class="line">            //通过任务工厂开启线程</span><br><span class="line">            TaskFactory taskFac = new TaskFactory();</span><br><span class="line">            Task t = taskFac.StartNew(MyMethod);</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h2><p>在进行多线程操作的时候，除了要学会熟练使用委托以外，lock也是不可或缺的。</p>
+<p>首先我们看这样一个程序：<br>1.MyThread.cs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread_Lock</span><br><span class="line">&#123;</span><br><span class="line">    class MyThread</span><br><span class="line">    &#123;</span><br><span class="line">        private int state = 5;</span><br><span class="line"></span><br><span class="line">        public void ChangeState()</span><br><span class="line">        &#123;</span><br><span class="line">            state++;</span><br><span class="line">			//标志点</span><br><span class="line">            if (5 == state)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;state = 5&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            state = 5;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个类当中的ChangeState方法中，正常来讲，if判断是不会执行的。不过这是单线程的情况，多线程可不一定。我们看看主函数，如果主函数这么写，大家运行一下，就会发现if语句竟然会执行</p>
+<p>2.主函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread_Lock</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void ChangeState(Object obj)</span><br><span class="line">        &#123;</span><br><span class="line">            MyThread myThread = obj as MyThread;</span><br><span class="line"></span><br><span class="line">            while(true)</span><br><span class="line">            &#123;</span><br><span class="line">                myThread.ChangeState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            MyThread my = new MyThread();</span><br><span class="line"></span><br><span class="line">            //发起两个线程，去执行同一个方法</span><br><span class="line">            new Thread(ChangeState).Start(my); //线程1</span><br><span class="line">            new Thread(ChangeState).Start(my); //线程2</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>单击运行，发现if语句执行了，为什么，因为我们开启了两个线程，并且总会有一个线程会在标志点处开始执行，那个时候，这个线程的值正好是5，所以就执行了if语句，至于什么时候会在标志点处执行，这个是不确定的。<br>为了避免类似的事情发生，我们就会用到锁机制。我们把主函数做一下更改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _Thread_Lock</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void ChangeState(Object obj)</span><br><span class="line">        &#123;</span><br><span class="line">            MyThread myThread = obj as MyThread;</span><br><span class="line"></span><br><span class="line">            while(true)</span><br><span class="line">            &#123;</span><br><span class="line">                lock (myThread)//如果锁住了，下方的语句就不执行了</span><br><span class="line">                &#123;               //lock只能用来锁住值类型</span><br><span class="line">                    myThread.ChangeState();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            MyThread my = new MyThread();</span><br><span class="line"></span><br><span class="line">            //发起两个线程，去执行同一个方法</span><br><span class="line">            Thread t = new Thread(ChangeState);</span><br><span class="line">            t.Start(my);</span><br><span class="line">            new Thread(ChangeState).Start(my);</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>lock机制的具体功能是：可以用来确保代码块完成运行，而不会被其他线程中断。它可以把一段代码定义为互斥段（critical section），互斥段在一个时刻内只允许一个线程进入执行，而其他线程必须等待。这是通过在代码块运行期间为给定对象获取互斥锁来实现的。</p>
+<p>有了lock机制之后，另一个问题就出现了，这个在操作系统中经常被提及——死锁。<br>死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。</p>
+<p>在操作系统当中，有一个专门用来解决死锁的算法，银行家算法。但是在真正进行程序开发的时候，更多的是要求我们在运用lock之前就仔细设计好lock的顺序，避免死锁的发生。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年10月14日 18:08</p>
+        <p>原始链接： <a class="post-url" href="/2018/10/14/C-进程和线程/" title="C#进程和线程">http://www.kuailegou.win/2018/10/14/C-进程和线程/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/head.jpg" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/10/14/C-进程和线程/&title=《C#进程和线程》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/head.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/10/14/C-进程和线程/&title=《C#进程和线程》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/10/14/C-进程和线程/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#进程和线程》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/10/14/C-进程和线程/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/10/14/C-进程和线程/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/10/14/C-进程和线程/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/C#/" class="color3">C#</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本概念"><span class="post-toc-text">基本概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程"><span class="post-toc-text">进程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#进程实体"><span class="post-toc-text">进程实体</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#进程状态"><span class="post-toc-text">进程状态</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线程"><span class="post-toc-text">线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#形象的比喻"><span class="post-toc-text">形象的比喻</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线程的使用"><span class="post-toc-text">线程的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开启线程"><span class="post-toc-text">开启线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#利用委托开启线程"><span class="post-toc-text">利用委托开启线程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#利用Thread类开启线程"><span class="post-toc-text">利用Thread类开启线程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#利用线程池"><span class="post-toc-text">利用线程池</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#利用任务Task开启线程"><span class="post-toc-text">利用任务Task开启线程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#锁机制"><span class="post-toc-text">锁机制</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/23/C-特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">C#特性</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年10月/">2018年10月</a><a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/2018年8月/">2018年8月</a><a class="category-link" href="/categories/2018年9月/">2018年9月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 17.5px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 17.5px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
