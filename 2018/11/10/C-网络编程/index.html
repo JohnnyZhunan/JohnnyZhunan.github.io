@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C#网络编程 | Johnny Zhu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="我的博客" />
+  
+  <meta name="description" content="Socket编程Socket中文译名为套接字，所谓的套接字其实是网络传输中端点的抽象表示。那么，端点又是什么呢？它其实就是网络传输中传输的起点或者终点，只是这个起点或者终点比较特殊，它是由两部分组成：ip地址和端口号，用（Ip地址：端口号）的形式表示。套接字是TCP/IP的网络通信的基本操作单元。那么，什么又是TCP/IP网络通信呢？这是一个很宽泛的概念，说的直白点，我们现在所用的互联网就是基于这">
+<meta name="keywords" content="C#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#网络编程">
+<meta property="og:url" content="http://www.kuailegou.win/2018/11/10/C-网络编程/index.html">
+<meta property="og:site_name" content="Johnny Zhu&#39;s Blog">
+<meta property="og:description" content="Socket编程Socket中文译名为套接字，所谓的套接字其实是网络传输中端点的抽象表示。那么，端点又是什么呢？它其实就是网络传输中传输的起点或者终点，只是这个起点或者终点比较特殊，它是由两部分组成：ip地址和端口号，用（Ip地址：端口号）的形式表示。套接字是TCP/IP的网络通信的基本操作单元。那么，什么又是TCP/IP网络通信呢？这是一个很宽泛的概念，说的直白点，我们现在所用的互联网就是基于这">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-10T08:46:37.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#网络编程">
+<meta name="twitter:description" content="Socket编程Socket中文译名为套接字，所谓的套接字其实是网络传输中端点的抽象表示。那么，端点又是什么呢？它其实就是网络传输中传输的起点或者终点，只是这个起点或者终点比较特殊，它是由两部分组成：ip地址和端口号，用（Ip地址：端口号）的形式表示。套接字是TCP/IP的网络通信的基本操作单元。那么，什么又是TCP/IP网络通信呢？这是一个很宽泛的概念，说的直白点，我们现在所用的互联网就是基于这">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">织梦星辰</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章分类</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/head.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        织梦星辰
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        人心生一念,天地悉皆知,善恶若无报,乾坤必有私
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/JohnnyZhunan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/5547714305/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-C-网络编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      C#网络编程
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/2018年11月/">2018年11月</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-11-10
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h2><p>Socket中文译名为套接字，所谓的套接字其实是网络传输中端点的抽象表示。<br>那么，端点又是什么呢？它其实就是网络传输中传输的起点或者终点，只是这个起点或者终点比较特殊，它是由两部分组成：ip地址和端口号，用（Ip地址：端口号）的形式表示。套接字是TCP/IP的网络通信的基本操作单元。<br>那么，什么又是TCP/IP网络通信呢？这是一个很宽泛的概念，说的直白点，我们现在所用的互联网就是基于这种架构研发的，它是互联网的基础通信架构。涉及的概念也特别多。比如说IP，TCP/UDP协议，ICMP，以及我们更加熟悉的http、ftp，但是在C#网络编程当中，我们最常用的也就是TCP/UDP的概念，了解一下这两个概念，以及相关的编程方法，就可以应对很对网络编程了。</p>
+<h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><p>参考这个博文<br><a href="https://www.cnblogs.com/buxiangxin/p/8336022.html" target="_blank" rel="noopener">tcp协议详解</a></p>
+<p>利用Socket编程，我们可以搭建建议的客户端与服务器端，相关步骤和代码如下所示：<br>Socket编程-Tcp服务器端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Socket_Tcp</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //服务器端</span><br><span class="line">            //1.创建socket</span><br><span class="line">            Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line"></span><br><span class="line">            //绑定ip地址和端口号（每个软件都会有一个端口号）</span><br><span class="line">            IPAddress ipAddress = new IPAddress(new byte[] &#123;192,168,101,8 &#125;); //IP地址可以用ipconfig查看一下</span><br><span class="line">            EndPoint endPoint = new IPEndPoint(ipAddress,2333); //IPEndPoint对端口号和ip地址进行了封装,2333是随便写的一个端口号</span><br><span class="line">            tcpServer.Bind(endPoint);</span><br><span class="line"></span><br><span class="line">            //开始监听</span><br><span class="line">            tcpServer.Listen(150); //最多允许150的客户端进行连接</span><br><span class="line"></span><br><span class="line">            //clientSocket为返回的客户端消息</span><br><span class="line">            Socket clientSocket = tcpServer.Accept();//暂停当前线程，直到有一个客户端连接之后，再执行该行以下的代码</span><br><span class="line">            string message = &quot;我往客户端发消息&quot;;</span><br><span class="line">            var bypeMessage = Encoding.UTF8.GetBytes(message); //将Message转换为byte类型</span><br><span class="line">            clientSocket.Send(bypeMessage);</span><br><span class="line"></span><br><span class="line">            //接收客户端返回的消息</span><br><span class="line">            byte[] backDate = new byte[1024];//用来接收服务器返回的消息</span><br><span class="line">            int length = clientSocket.Receive(backDate);</span><br><span class="line">            string backMessage = Encoding.UTF8.GetString(backDate, 0, length);</span><br><span class="line">            Console.WriteLine(backMessage);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>socket编程-Tcp客户端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Socket_Tcp_Client</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //客户端</span><br><span class="line">            //创建Socket</span><br><span class="line">            Socket tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</span><br><span class="line"></span><br><span class="line">            //发起建立连接的请求</span><br><span class="line">            IPAddress ipAddress = IPAddress.Parse(&quot;192.168.101.8&quot;);</span><br><span class="line">            EndPoint endPoint = new IPEndPoint(ipAddress, 2333);</span><br><span class="line">            tcpClient.Connect(endPoint); // 客户端不需要监听，但是要和服务器连接，且Ip地址和端口号要和服务器保持一致</span><br><span class="line">            byte[] date = new byte[1024];</span><br><span class="line">            int length = tcpClient.Receive(date); // 用date存储接收过来的数据，长度是length</span><br><span class="line"></span><br><span class="line">            string message = Encoding.UTF8.GetString(date, 0, length);//将接收的date转换为string类型</span><br><span class="line">            Console.WriteLine(message);</span><br><span class="line"></span><br><span class="line">            //向服务器返回消息</span><br><span class="line">            string backMessage = Console.ReadLine();//返回的消息由用户输入</span><br><span class="line">            tcpClient.Send(Encoding.UTF8.GetBytes(backMessage));//向服务器发送消息</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3><p>参考这个博文<br><a href="https://blog.csdn.net/s_lisheng/article/details/73538229" target="_blank" rel="noopener">UDP协议学习</a></p>
+<p>这个博文当中已经说明了这么几种情况：<br>1.首先，UDP是无连接协议，所以对比一下TCP协议的编程方式，我们不难发现，UDP当中少了建立连接这个过程。<br>2.UDP协议是一种数据报协议，所以不同于TCP协议采用的Stream方式，而是采用Dgram的方式，这个在Socket编程当中也有所体现。</p>
+<p>UDP服务器端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace udp_server</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        private static Socket udpServer;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //创建Socket</span><br><span class="line">            udpServer = new Socket(AddressFamily.InterNetwork,</span><br><span class="line">                SocketType.Dgram, ProtocolType.Udp);</span><br><span class="line"></span><br><span class="line">            //绑定ip和端口号</span><br><span class="line">            udpServer.Bind(new IPEndPoint(IPAddress.Parse(&quot;192.168.101.8&quot;),2333));</span><br><span class="line"></span><br><span class="line">            //接收数据</span><br><span class="line">            new Thread(ReceiveMessage) &#123; IsBackground = true &#125;.Start();//设置成后台线程，因为程序运行结束，也就不需要这个线程了。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            udpServer.Close();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private static void ReceiveMessage()</span><br><span class="line">        &#123;</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                EndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);</span><br><span class="line">                byte[] data = new byte[1024];</span><br><span class="line">                int length = udpServer.ReceiveFrom(data, ref remoteEndPoint);</span><br><span class="line"></span><br><span class="line">                string message = Encoding.UTF8.GetString(data, 0, length);</span><br><span class="line"></span><br><span class="line">                Console.WriteLine(&quot;从ip: &quot; + (remoteEndPoint as IPEndPoint).Address.ToString()</span><br><span class="line">                    + (remoteEndPoint as IPEndPoint).Port + &quot;收到了数据： &quot; + message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>UDP客户端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace udp_socket_Client</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Socket udpClient = new Socket(AddressFamily.InterNetwork, SocketType.Dgram</span><br><span class="line">                , ProtocolType.Udp);</span><br><span class="line">            //发送数据</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                EndPoint serverPoint = new IPEndPoint(IPAddress.Parse(&quot;192.168.101.8&quot;), 2333));</span><br><span class="line">                string message = Console.ReadLine();</span><br><span class="line">                byte[] data = Encoding.UTF8.GetBytes(message);</span><br><span class="line">                udpClient.SendTo(data, serverPoint);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><p>TCP和UDP编程除了可以使用Socket以外，还可以使用TcpListener和UdpClient，具体编码和步骤如下所示。</p>
+<h3 id="TcpListener"><a href="#TcpListener" class="headerlink" title="TcpListener"></a>TcpListener</h3><p>服务器端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Tcplistener_Server</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //1.对socket进行封装，tcpListener内本身包含套接字</span><br><span class="line">            TcpListener listener = new TcpListener(IPAddress.Parse(&quot;192.168.101.8&quot;),2223);</span><br><span class="line"></span><br><span class="line">            //2.进行监听</span><br><span class="line">            listener.Start();</span><br><span class="line"></span><br><span class="line">            //3.等待用户连接</span><br><span class="line">            TcpClient client = listener.AcceptTcpClient();</span><br><span class="line"></span><br><span class="line">            //4.获得客户端发送过来的数据</span><br><span class="line">            NetworkStream stream = client.GetStream();</span><br><span class="line"></span><br><span class="line">            //5.读取数据</span><br><span class="line">            byte[] data = new byte[1024];</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                int length = stream.Read(data, 0, 1024);</span><br><span class="line">                string message = Encoding.UTF8.GetString(data, 0, length);</span><br><span class="line">                Console.WriteLine(&quot;Receive Message: &quot; + message);</span><br><span class="line">            &#125;</span><br><span class="line">            stream.Close();</span><br><span class="line">            client.Close();</span><br><span class="line">            listener.Stop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>客户端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace Tcplistener_Cllient</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //1.创建TCP对象的时候，就会与服务器建立联系</span><br><span class="line">            TcpClient client = new TcpClient(&quot;192.168.101.8&quot;, 2223);</span><br><span class="line"></span><br><span class="line">            //2.通过网络流获取数据信息</span><br><span class="line">            NetworkStream stream = client.GetStream();</span><br><span class="line"></span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                //手动输入需要发送的信息</span><br><span class="line">                string message = Console.ReadLine();</span><br><span class="line">                byte[] data = Encoding.UTF8.GetBytes(message);</span><br><span class="line"></span><br><span class="line">                //将信息写入网络流</span><br><span class="line">                stream.Write(data, 0, data.Length);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //关闭流</span><br><span class="line">            stream.Close();</span><br><span class="line">            client.Close();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="UdpClient"><a href="#UdpClient" class="headerlink" title="UdpClient"></a>UdpClient</h3><p>消息接收方<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _UdpListener</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            UdpClient udpClient = new UdpClient(new IPEndPoint(IPAddress.Parse(&quot;192.168.101.8&quot;),2223));</span><br><span class="line"></span><br><span class="line">            //接收数据</span><br><span class="line">            IPEndPoint point = new IPEndPoint(IPAddress.Any, 0);</span><br><span class="line">            byte[] data = udpClient.Receive(ref point);//通过point确定数据来自哪个ip和端口号，并返回接收的数据</span><br><span class="line">            string message = Encoding.UTF8.GetString(data);</span><br><span class="line">            Console.WriteLine(&quot;收到数据： &quot; + message);</span><br><span class="line">            udpClient.Close();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>消息发送方<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Sockets;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _udpListenerClient</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            UdpClient client = new UdpClient();</span><br><span class="line">            string message = Console.ReadLine();</span><br><span class="line">            byte[] data = Encoding.UTF8.GetBytes(message);</span><br><span class="line"></span><br><span class="line">            client.Send(data, data.Length, new IPEndPoint(IPAddress.Parse(&quot;192.169.101.8&quot;), 2333));</span><br><span class="line">            client.Close();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h2><p>在看过TCP和UDP的相关资料，以及编写相关代码之后，我们不难总结出这两个协议的这几个不同之处：</p>
+<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><p>TCP需要客户端与服务器之间的连接操作，连接的时候需要“三次握手”，断开连接则需要“四次挥手”，而UDP协议则没有这个过程。</p>
+<h3 id="复杂程度"><a href="#复杂程度" class="headerlink" title="复杂程度"></a>复杂程度</h3><p>TCP协议相对复杂，这当中包含了容错机制，以及拥堵的处理等，正式因为如此，TCP的可靠性较高。而UDP则要简单许多，相对的，UDP的可靠性也比较低下。</p>
+<h3 id="传输模式"><a href="#传输模式" class="headerlink" title="传输模式"></a>传输模式</h3><p>TCP的传输，使用的是流模式（Stream），而UDP则采用的是数据报。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年11月10日 16:46</p>
+        <p>原始链接： <a class="post-url" href="/2018/11/10/C-网络编程/" title="C#网络编程">http://www.kuailegou.win/2018/11/10/C-网络编程/</a></p>
+        <footer>
+            <a href="http://www.kuailegou.win">
+                <img src="/images/head.jpg" alt="Johnny Zhu">
+                Johnny Zhu
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.kuailegou.win/2018/11/10/C-网络编程/&title=《C#网络编程》 — Johnny Zhu's Blog&pic=http://www.kuailegou.winimages/head.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.kuailegou.win/2018/11/10/C-网络编程/&title=《C#网络编程》 — Johnny Zhu's Blog&source=��һ��ƶ����������Ϥ�ĸ��ţ���ʹ���ջ����ֻ��ж�����" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.kuailegou.win/2018/11/10/C-网络编程/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#网络编程》 — Johnny Zhu's Blog&url=http://www.kuailegou.win/2018/11/10/C-网络编程/&via=http://www.kuailegou.win" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.kuailegou.win/2018/11/10/C-网络编程/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.kuailegou.win/2018/11/10/C-网络编程/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/C#/" class="color3">C#</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Socket编程"><span class="post-toc-text">Socket编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP协议"><span class="post-toc-text">TCP协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UDP协议"><span class="post-toc-text">UDP协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#监听器"><span class="post-toc-text">监听器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TcpListener"><span class="post-toc-text">TcpListener</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UdpClient"><span class="post-toc-text">UdpClient</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TCP和UDP的区别"><span class="post-toc-text">TCP和UDP的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#连接方式"><span class="post-toc-text">连接方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#复杂程度"><span class="post-toc-text">复杂程度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传输模式"><span class="post-toc-text">传输模式</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/14/C-进程和线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">C#进程和线程</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <section id="comments">
+            <div id="disqus_thread">
+                <script type="text/javascript">
+                    var disqus_shortname = 'true';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Johnny Zhu<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://www.kuailegou.win",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/2018年10月/">2018年10月</a><a class="category-link" href="/categories/2018年11月/">2018年11月</a><a class="category-link" href="/categories/2018年2月/">2018年2月</a><a class="category-link" href="/categories/2018年4月/">2018年4月</a><a class="category-link" href="/categories/2018年5月/">2018年5月</a><a class="category-link" href="/categories/2018年8月/">2018年8月</a><a class="category-link" href="/categories/2018年9月/">2018年9月</a><a class="category-link" href="/categories/My-Viewpoints/">My Viewpoints</a><a class="category-link" href="/categories/有趣的小笑话/">有趣的小笑话</a><a class="category-link" href="/categories/算法与知识点/">算法与知识点</a><a class="category-link" href="/categories/算法竞赛-卡特兰数-2018年2月/">算法竞赛-卡特兰数,2018年2月</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 17.5px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章分类</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/NGUI/" style="font-size: 15px;">NGUI</a> <a href="/tags/Unity/" style="font-size: 17.5px;">Unity</a> <a href="/tags/我的随笔/" style="font-size: 15px;">我的随笔</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/有趣的东西/" style="font-size: 10px;">有趣的东西</a> <a href="/tags/算法竞赛/" style="font-size: 12.5px;">算法竞赛</a> <a href="/tags/算法竞赛-动态规划/" style="font-size: 10px;">算法竞赛-动态规划</a> <a href="/tags/算法竞赛-基础/" style="font-size: 12.5px;">算法竞赛-基础</a> <a href="/tags/算法竞赛-大数/" style="font-size: 10px;">算法竞赛-大数</a> <a href="/tags/算法竞赛基础/" style="font-size: 10px;">算法竞赛基础</a> <a href="/tags/随笔（非本人创作）/" style="font-size: 10px;">随笔（非本人创作）</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
